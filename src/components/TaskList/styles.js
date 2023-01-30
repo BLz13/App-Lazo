@@ -1,13 +1,23 @@
 import { StyleSheet } from "react-native";
-
-const black ='#1E1B18';
-const grey ='#E1DEE3';
-const violet ='#987284';
-const pink ='#EE7674';
-const orange ='#F5853F';
+import { colors } from "../../assets/colors"
 
 export const styles = StyleSheet.create({
-  // listContainer{},
-  // listItemContainer{},
-  // listItem{}, 
-  });
+  listContainer:{
+    marginTop: 20,
+    width: '100%',
+    flex: 1,
+    borderRadius: 20,
+  },
+  listItemContainer:{
+    backgroundColor: colors.violet,
+    borderRadius: 50,
+    width: '95%',
+    padding: 20,
+    margin: 10,
+    alignSelf: 'center',
+  },
+  listItem:{
+    alignSelf:'center',
+    color: colors.grey,
+  },
+});

@@ -1,15 +1,38 @@
 import { StyleSheet } from "react-native";
-
-const black ='#1E1B18';
-const grey ='#E1DEE3';
-const violet ='#987284';
-const pink ='#EE7674';
-const orange ='#F5853F';
+import { colors } from "../../assets/colors"
 
 export const styles = StyleSheet.create({
-  // modalContainer{},
-  // modalTitle{},
-  // modalDetailContainer{},
-  // modalDetailMessage{},
-  // modalSelectedItem{}, 
+  modalContainer:{
+    alignSelf:'center',
+    flex: 1,
+  },
+  modalTitle:{
+    marginVertical: 20,
+    textAlign:'center',
+    textTransform: 'capitalize',
+    fontSize: 25,
+    color: colors.pink,
+  },
+  modalDetailContainer:{
+    flex: 1,
+  },
+  modalDetailMessage:{
+    marginVertical: 20,
+    textAlign:'center',
+    textTransform: 'capitalize',
+    fontSize: 20,
+    color: colors.orange,
+  },
+  modalSelectedItem:{
+    marginVertical: 20,
+    textAlign:'center',
+    color: colors.black,
+  },  
+  modalButtonsContainer:{
+    flex: 1,
+    flexDirection: 'row',
+    alignItems:'center',
+    justifyContent: 'space-evenly',
+    width: '100%',
+  } 
   });

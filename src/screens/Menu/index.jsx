@@ -7,13 +7,16 @@ import { styles } from './styles';
 
 const Menu = (props) => {
 
-    const {onPress} = props
+    const {onPress, btnText} = props
 
     const {black, grey, violet, pink, orange, lightBlue, yellow, blue} = colors.light;
 
     return (
         <View style={styles.appContainer}>
-            <OptionsMenuBtn onPress={onPress}/>
+            <OptionsMenuBtn
+                onPress={onPress}
+                btnText={btnText}
+            />
         </View>
     );
 };

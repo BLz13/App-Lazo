@@ -1,7 +1,7 @@
-import { ActivityIndicator, View } from 'react-native';
 import { CustomModal, ListInput, TaskList } from '../../components/index'
 import React, { useState } from 'react';
 
+import { View } from 'react-native';
 import { colors } from "../../assets/colors";
 import { styles } from './styles';
 

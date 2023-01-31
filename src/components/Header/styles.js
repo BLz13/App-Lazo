@@ -8,12 +8,11 @@ export const styles = StyleSheet.create({
         justifyContent:"center",
         alignSelf:"center",
         width: '93%',
+        marginTop:25,
         height: 70,
-        marginTop:30,
         paddingLeft: '10%',
         backgroundColor: colors.light.orange,
-        borderRadius:10,
-        elevation: 24,
+        borderRadius:25,
     },
     headerText:{
         color: colors.light.grey,
@@ -23,8 +22,8 @@ export const styles = StyleSheet.create({
             height:2,
         },
         textShadowRadius:7,
-        fontWeight: "bold",
         fontSize: 20,
         textAlign: "left",
+        fontFamily:"IBMPlexMono-MediumItalic",
     }
 });

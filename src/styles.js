@@ -2,14 +2,15 @@ import { StyleSheet } from "react-native";
 import { colors } from "./assets/colors"
 
 export const styles = StyleSheet.create({
+    containerLoader:{
+      display:"flex",
+      flex:10,
+      alignItems:"center",
+      justifyContent:"center",
+    },
     container: {
-        flex: 1,
-        padding: 45,
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        backgroundColor: colors.black,
-      },  
-      statusBar:{
-        barStyle: 'light-content',
-      }
+      width:'100%',
+      height:'100%',
+      backgroundColor: colors.light.grey,
+    }
 });

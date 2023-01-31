@@ -5,7 +5,14 @@ import { styles } from './styles'
 
 const ListInput = (props) => {
 
-    const {placeholder, buttonText, inputValue, onChangeInputHandler, buttonColor, onPressAddHandler} = props
+    const {
+      buttonColor,
+      buttonText,
+      onChangeInputHandler,
+      onPressAddHandler,
+      placeholder,
+      inputValue
+    } = props;
 
     return(
         <View style={styles.inputContainer}>

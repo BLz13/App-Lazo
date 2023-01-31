@@ -1,76 +1,54 @@
-import { CustomModal, ListInput, TaskList } from './components';
+import { ActivityIndicator, View } from 'react-native';
 import React, { useState } from 'react';
 
-import { View } from 'react-native';
-import { colors } from "./assets/colors";
+import { General } from './screens/index'
+import { Header } from './components/index'
 import { styles } from './styles';
+
+// import { useFonts } from "expo-font"
 
 const App = () => {
 
-  const {black, grey, violet, pink, orange, lightBlue, yellow, blue} = colors;
+  let screen = 0;
 
-  const [inputValue, setInputValue] = useState("");
+  let content;
 
-  const [isModalVisible, setModalVisible] = useState(false);
+  // const [loaded] = useFonts({
+  //   "name": required(../../assets)
+  // });
 
-  const [list, setList] = useState([]);
+  // if (!loaded) {
+  //   return(
+  //     <View style={styles.containerLoader}>
+  //       <ActivityIndicator size='large' colors={orange} />
+  //     </View>
+  //   )
+  // }
 
-  const [selectedItem, setSelectedItem] = useState(null);
+  // const [screen, setScreen] = useState();
 
-  const onChangeInputHandler = (text) => {
-    setInputValue(text);
-  };
-
-  const onPressAddHandler = () => {
-    setList([
-      ...list,
-      {
-        id: Math.random().toString(),
-        value: inputValue,
-      }
-    ])
-    setInputValue('')
-  };
-
-  const onHandleModal = (item) => {
-    setModalVisible(!isModalVisible);
-    setSelectedItem(item);
-  };
-  
-  const onPressCancel = () => {
-    setModalVisible(!isModalVisible);
-    setSelectedItem(null);
-  };
-
-  const onPressDelete = () => {
-    setList( (prevItemsList) => prevItemsList.filter( (item) => item.id !== selectedItem.id));
-    setModalVisible(!isModalVisible);
-  };
+  switch (screen) {
+    case 0:
+      content = <General />;
+    break;
+    case 1:
+      content = <General />;
+    break;
+    // case 2:
+      // content = <General />
+    // break;
+    // case 3:
+      // content = <General />
+    // break;
+  }
 
   
   return (
     <View style={styles.container}>
-      <ListInput 
-        buttonColor={violet}
-        buttonText='Add'
-        onChangeInputHandler={onChangeInputHandler}
-        onPressAddHandler={onPressAddHandler}
-        placeholder='add a new task'
+      <Header 
+        headerText='NotePad'
       />
-      <TaskList 
-        list={list}
-        onHandleModal={onHandleModal}
-      />
-      <CustomModal
-        isModalVisible={isModalVisible}
-        cancelColor={lightBlue}
-        cancelTitle="No, go back"
-        onPressCancel={onPressCancel}
-        deleteColor={orange}
-        deleteTitle="Yes, delete it!"
-        onPressDelete={onPressDelete}
-        selectedItem={selectedItem}
-       />
+      {content}
     </View>
   );
 };

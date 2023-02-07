@@ -1,21 +1,14 @@
-import React, { useState } from 'react';
-
 import { OptionsMenuBtn } from '../../components/index'
 import { View } from 'react-native';
-import { colors } from "../../assets/colors";
 import { styles } from './styles';
 
-const Menu = (props) => {
-
-    const {onPress, btnText} = props
-
-    const {black, grey, violet, pink, orange, lightBlue, yellow, blue} = colors.light;
+const Menu = ({navigation}) => {
 
     return (
         <View style={styles.appContainer}>
             <OptionsMenuBtn
-                onPress={onPress}
-                btnText={btnText}
+                onPress={() => navigation.navigate("General")}
+                btnText="General Notes"
             />
         </View>
     );

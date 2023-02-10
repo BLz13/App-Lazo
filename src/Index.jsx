@@ -1,8 +1,8 @@
-import { ActivityIndicator, View } from 'react-native';
+import { ActivityIndicator, StatusBar, View } from 'react-native';
 
 import AppNavigation from "./navigation/index"
+import { COLOURS } from './assets/COLOURS';
 import { Header } from './components/index';
-import { colors } from './assets/colors';
 import { styles } from './styles';
 import { useFonts } from "expo-font"
 
@@ -28,18 +28,15 @@ const App = () => {
   if (!loaded) {
     return(
       <View style={styles.containerLoader}>
-        <ActivityIndicator size='large' colors={colors.light.orange} />
+        <ActivityIndicator size='large' colors={COLOURS.light.orange} />
       </View>
     );
   };
  
   return (
     <View style={styles.container}>
-      <Header
-        headerText='NotePad'
-      />
       <AppNavigation />
-     </View>
+    </View>
   );
   
 };

@@ -1,5 +1,5 @@
+import { COLOURS } from "../../assets/COLOURS"
 import { StyleSheet } from "react-native";
-import { colors } from "../../assets/colors"
 
 export const styles = StyleSheet.create({
   modalContainer:{
@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
     textAlign:'center',
     textTransform: 'capitalize',
     fontSize: 25,
-    color: colors.pink,
+    color: COLOURS.light.pink,
   },
   modalDetailContainer:{
     flex: 1,
@@ -21,12 +21,12 @@ export const styles = StyleSheet.create({
     textAlign:'center',
     textTransform: 'capitalize',
     fontSize: 20,
-    color: colors.orange,
+    color: COLOURS.light.orange,
   },
   modalSelectedItem:{
     marginVertical: 20,
     textAlign:'center',
-    color: colors.black,
+    color: COLOURS.light.black,
   },  
   modalButtonsContainer:{
     flex: 1,

@@ -1,13 +1,13 @@
 import { CustomModal, ListInput, TaskList } from '../../components/index'
 import React, { useState } from 'react';
 
+import { COLOURS } from "../../assets/COLOURS";
 import { View } from 'react-native';
-import { colors } from "../../assets/colors";
 import { styles } from './styles';
 
 const General = () => {
 
-    const {black, grey, violet, pink, orange, lightBlue, yellow, blue} = colors.light;
+    const {black, grey, violet, pink, orange, lightBlue, yellow, blue} = COLOURS.light;
 
     const [inputValue, setInputValue] = useState("");
 

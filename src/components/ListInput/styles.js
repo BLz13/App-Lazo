@@ -1,5 +1,5 @@
+import { COLOURS } from "../../assets/COLOURS"
 import { StyleSheet } from "react-native";
-import { colors } from "../../assets/colors"
 
 export const styles = StyleSheet.create({
   inputContainer:{
@@ -14,12 +14,12 @@ export const styles = StyleSheet.create({
     alignItems:'center',
     justifyContent:'space-evenly',
     borderWidth:2,
-    borderColor: colors.violet,
+    borderColor: COLOURS.light.violet,
   },
   textInput:{
     width: '70%',
     height: 40,
-    color: colors.black,
+    color: COLOURS.light.black,
     opacity: 0.7,
   }, 
 });

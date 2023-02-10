@@ -1,5 +1,5 @@
+import { COLOURS } from "../../assets/COLOURS"
 import { StyleSheet } from "react-native";
-import { colors } from "../../assets/colors"
 
 export const styles = StyleSheet.create({
     headerContainer:{
@@ -11,12 +11,12 @@ export const styles = StyleSheet.create({
         marginTop:25,
         height: 70,
         paddingLeft: '10%',
-        backgroundColor: colors.light.orange,
+        backgroundColor: COLOURS.light.orange,
         borderRadius:25,
     },
     headerText:{
-        color: colors.light.grey,
-        textShadowColor: colors.light.black,
+        color: COLOURS.light.grey,
+        textShadowColor: COLOURS.light.black,
         textShadowOffset:{
             width:3,
             height:2,
@@ -24,6 +24,6 @@ export const styles = StyleSheet.create({
         textShadowRadius:7,
         fontSize: 20,
         textAlign: "left",
-        fontFamily:"IBMPlexMono-MediumItalic",
+        fontFamily:"MediumItalic",
     }
 });

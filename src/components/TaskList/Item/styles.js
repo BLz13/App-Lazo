@@ -1,9 +1,9 @@
+import { COLOURS } from "../../../assets/COLOURS"
 import { StyleSheet } from "react-native";
-import { colors } from "../../../assets/colors"
 
 export const styles = StyleSheet.create({
   listItemContainer:{
-    backgroundColor: colors.violet,
+    backgroundColor: COLOURS.light.violet,
     borderRadius: 50,
     width: '95%',
     padding: 20,
@@ -12,6 +12,6 @@ export const styles = StyleSheet.create({
   },
   listItem:{
     alignSelf:'center',
-    color: colors.grey,
+    color: COLOURS.light.grey,
   },
 });

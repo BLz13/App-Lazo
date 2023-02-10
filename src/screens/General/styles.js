@@ -1,5 +1,5 @@
+import { COLOURS } from "../../assets/COLOURS"
 import { StyleSheet } from "react-native";
-import { colors } from "../../assets/colors"
 
 export const styles = StyleSheet.create({
    appContainer: {
@@ -7,6 +7,6 @@ export const styles = StyleSheet.create({
       padding: 45,
       alignItems: 'center',
       justifyContent: 'flex-start',
-      backgroundColor: colors.light.grey,
+      backgroundColor: COLOURS.light.grey,
     },
 });

@@ -1,16 +1,21 @@
-import { StyleSheet } from "react-native";
-import { colors } from "./assets/colors"
+import { StatusBar, StyleSheet } from "react-native";
+
+import { COLOURS } from "./assets/COLOURS"
 
 export const styles = StyleSheet.create({
-    containerLoader:{
-      display:"flex",
-      flex:10,
-      alignItems:"center",
-      justifyContent:"center",
+  container: {
+    flex: 1,
+    width:'100%',
+    height:'100%',
+    paddingTop: StatusBar.currentHeight,
+    backgroundColor: COLOURS.light.grey,
     },
-    container: {
+    containerLoader:{
+      flex: 1,
       width:'100%',
       height:'100%',
-      backgroundColor: colors.light.grey,
+      paddingTop: StatusBar.currentHeight,
+      alignItems:"center",
+      justifyContent:"center",
     }
 });

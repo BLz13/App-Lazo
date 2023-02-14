@@ -5,15 +5,18 @@ import { styles } from './styles';
 
 const CategoryItem = (props) => {
 
-  const { onHandleModal, category } = props;
+  const { onPressCategory, category } = props;
 
     return (
       <TouchableOpacity
         style={styles.listCategoryContainer}
-        onPress={ () => onHandleModal(item) }
+        onPress={ () => onPressCategory(category) }
       >
-        <Text style={styles.categoryItem} >
+        <Text style={styles.categoryTitle} >
           {category.name}
+        </Text>
+        <Text style={styles.categoryDescription} >
+          {category.description}
         </Text>
       </TouchableOpacity>
     )

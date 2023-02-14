@@ -6,13 +6,11 @@ import { styles } from "./styles";
 
 const Categories = (props) => {
 
-    // const {onHandleModal} = props;
-
-    const onHandleModal = (category) => {};
+  const {onPressCategory} = props
 
     const renderItemList =  ({item}) => (
       <CategoryItem
-        onHandleModal={onHandleModal}
+        onPressCategory={onPressCategory}
         category={item}
       />
     );

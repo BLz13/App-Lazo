@@ -4,14 +4,22 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
     listCategoryContainer:{
         backgroundColor: COLOURS.light.violet,
+        flex: 1,
         borderRadius: 50,
-        width: '95%',
         padding: 20,
         margin: 10,
-        alignSelf: 'center',
+        alignSelf: "stretch",
     },
-    categoryItem:{
+    categoryTitle:{
         alignSelf:'center',
+        fontFamily: 'SemiBold',
+        color: COLOURS.light.grey,
+    },
+    categoryDescription:{
+        alignSelf:'center',
+        textTransform: "capitalize",
+        fontSize: 12,
+        fontFamily: 'Italic',
         color: COLOURS.light.grey,
     },
 });

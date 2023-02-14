@@ -4,8 +4,7 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
     headerStyle:{
         backgroundColor:COLOURS.light.grey,
-        borderTopRightRadius: 50,
-        borderBottomLeftRadius: 50,
+        shadowColor: COLOURS.light.black,
         elevation: 24,
     },
     headerTintColor: COLOURS.light.orange ,

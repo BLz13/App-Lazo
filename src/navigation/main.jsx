@@ -1,11 +1,11 @@
-import { General, Menu } from '../screens/index'
+import { General, Menu, Shopping, ToDo } from '../screens/index'
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { styles } from './styles';
 
 const Stack = createNativeStackNavigator();
 
-const MainNavigation = () => {
+const NotesNavigation = () => {
     return(
         <Stack.Navigator
             initialRouteName="Menu"
@@ -22,9 +22,29 @@ const MainNavigation = () => {
                     title: 'NotePad',
                 }}
             />
-            <Stack.Screen name="General" component={General} />
+            <Stack.Screen
+                name="general"
+                component={General}
+                options={ ( { route } ) => ({ 
+                    title: route.params.categoryName,
+                })}
+            />
+            <Stack.Screen
+                name="shopping"
+                component={Shopping}
+                options={ ( { route } ) => ({ 
+                    title: route.params.categoryName,
+                })}
+            />
+            <Stack.Screen
+                name="toDo"
+                component={ToDo}
+                options={ ( { route } ) => ({ 
+                    title: route.params.categoryName,
+                })}
+            />
         </Stack.Navigator>
     )
 };
 
-export default MainNavigation;
+export default NotesNavigation;

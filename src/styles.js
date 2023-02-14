@@ -7,15 +7,16 @@ export const styles = StyleSheet.create({
     flex: 1,
     width:'100%',
     height:'100%',
-    paddingTop: StatusBar.currentHeight,
     backgroundColor: COLOURS.light.grey,
+    paddingTop: StatusBar.currentHeight,
     },
     containerLoader:{
       flex: 1,
       width:'100%',
       height:'100%',
-      paddingTop: StatusBar.currentHeight,
       alignItems:"center",
       justifyContent:"center",
-    }
+      backgroundColor: COLOURS.light.grey,
+      paddingTop: StatusBar.currentHeight,
+    },
 });

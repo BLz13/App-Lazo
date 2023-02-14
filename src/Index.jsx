@@ -2,7 +2,6 @@ import { ActivityIndicator, StatusBar, View } from 'react-native';
 
 import AppNavigation from "./navigation/index"
 import { COLOURS } from './assets/COLOURS';
-import { Header } from './components/index';
 import { styles } from './styles';
 import { useFonts } from "expo-font"
 

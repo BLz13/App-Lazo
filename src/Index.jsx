@@ -1,7 +1,9 @@
-import { ActivityIndicator, StatusBar, View } from 'react-native';
+import { ActivityIndicator, View } from 'react-native';
 
 import AppNavigation from "./navigation/index"
 import { COLOURS } from './assets/COLOURS';
+import { Provider } from 'react-redux';
+import notes from "./notes/index"
 import { styles } from './styles';
 import { useFonts } from "expo-font"
 
@@ -33,9 +35,11 @@ const App = () => {
   };
  
   return (
-    <View style={styles.container}>
-      <AppNavigation />
-    </View>
+    <Provider store={notes} >
+      <View style={styles.container}>
+        <AppNavigation />
+      </View>
+    </Provider>
   );
   
 };

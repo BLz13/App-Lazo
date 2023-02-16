@@ -1,19 +1,23 @@
 import { CustomModal, ListInput, TaskList } from '../../components/index'
 import React, { useState } from 'react';
+import { addNote, deleteNote } from "../../notes/actions/index"
+import { useDispatch, useSelector } from 'react-redux';
 
-import { COLOURS } from "../../assets/COLOURS";
+import { COLOURS } from "../../assets/COLOURS"
 import { View } from 'react-native';
 import { styles } from './styles';
 
 const Shopping = () => {
 
-    const {black, grey, violet, pink, orange, lightBlue, yellow, blue} = COLOURS.light;
+    const { black, blue, grey, lightBlue, orange, pink, violet, yellow } = COLOURS.light;
+
+    const dispatch = useDispatch();
+
+    const notes = useSelector( (state) => state.shopping);
 
     const [inputValue, setInputValue] = useState("");
 
     const [isModalVisible, setModalVisible] = useState(false);
-
-    const [list, setList] = useState([]);
 
     const [selectedItem, setSelectedItem] = useState(null);
 
@@ -22,14 +26,27 @@ const Shopping = () => {
     };
 
     const onPressAddHandler = () => {
-        setList([
-        ...list,
-        {
-            id: Math.random().toString(),
-            value: inputValue,
+        const payload = {
+            categoryId: "shopping",
+            note: {
+                id: Math.random().toString(),
+                value: inputValue,
+            }
         }
-        ])
+        dispatch(addNote(payload));
         setInputValue('')
+    };
+
+    const onPressDelete = () => {
+        const payload = {
+            categoryId: "shopping",
+            note: {
+                id: Math.random().toString(),
+                value: inputValue,
+            }
+        }
+        dispatch(deleteNote(payload));
+        setModalVisible(!isModalVisible);
     };
 
     const onHandleModal = (item) => {
@@ -40,11 +57,6 @@ const Shopping = () => {
     const onPressCancel = () => {
         setModalVisible(!isModalVisible);
         setSelectedItem(null);
-    };
-
-    const onPressDelete = () => {
-        setList( (prevItemsList) => prevItemsList.filter( (item) => item.id !== selectedItem.id));
-        setModalVisible(!isModalVisible);
     };
     
     return (
@@ -58,7 +70,7 @@ const Shopping = () => {
                 inputValue={inputValue}
             />
             <TaskList 
-                list={list}
+                list={notes}
                 onHandleModal={onHandleModal}
             />
             <CustomModal

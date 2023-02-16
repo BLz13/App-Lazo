@@ -1,5 +1,4 @@
-import { Categories, OptionsMenuBtn } from '../../components/index'
-
+import { Categories } from '../../components/index'
 import { View } from 'react-native';
 import { styles } from './styles';
 

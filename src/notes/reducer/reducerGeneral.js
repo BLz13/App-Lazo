@@ -31,6 +31,8 @@ const reducerGeneral = ( state = initialState, action) => {
 
         case  DELETE_NOTE: {
 
+            console.log(state.generalNotes);
+
             const indexNote = state.generalNotes.findIndex(
                 (note) => (note.id === state.selected.id)
             );
@@ -39,7 +41,7 @@ const reducerGeneral = ( state = initialState, action) => {
             
             return{
                 ...state,
-                generalNotes: ((prevItemsList) => prevItemsList.filter( (note) => note.id !== state.selected.id))
+                generalNotes: (state['generalNotes'].filter( (note) => note.id !== state.selected.id))
             };
             
         }

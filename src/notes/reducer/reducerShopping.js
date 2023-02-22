@@ -39,7 +39,7 @@ const reducerShopping = ( state = initialState, action) => {
             
             return{
                 ...state,
-                shoppingNotes: ((prevItemsList) => prevItemsList.filter( (note) => note.id !== state.selected.id))
+                shoppingNotes: (state['shoppingNotes'].filter( (note) => note.id !== state.selected.id))
             };
             
         }

@@ -39,7 +39,7 @@ const reducerToDo = ( state = initialState, action) => {
             
             return{
                 ...state,
-                toDoNotes: ((prevItemsList) => prevItemsList.filter( (note) => note.id !== state.selected.id))
+                toDoNotes: (state['toDoNotes'].filter( (note) => note.id !== state.selected.id))
             };
             
         }

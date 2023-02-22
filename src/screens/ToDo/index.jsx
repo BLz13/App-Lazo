@@ -1,6 +1,6 @@
 import { CustomModal, ListInput, TaskList } from '../../components/index'
 import React, { useState } from 'react';
-import { addNote, deleteNote } from "../../notes/actions/index"
+import { addNote, deleteNote, selectNote } from "../../notes/actions/index"
 import { useDispatch, useSelector } from 'react-redux';
 
 import { COLOURS } from "../../assets/COLOURS"
@@ -13,13 +13,13 @@ const ToDo = () => {
 
     const dispatch = useDispatch();
 
-    const notes = useSelector( (state) => state.toDo);
+    const toDoNotes = useSelector( (state) => state.toDo.toDoNotes);
+    
+    const selectedNote = useSelector( (state) => state.toDo.selectedNote);
 
     const [inputValue, setInputValue] = useState("");
 
     const [isModalVisible, setModalVisible] = useState(false);
-
-    const [selectedItem, setSelectedItem] = useState(null);
 
     const onChangeInputHandler = (text) => {
         setInputValue(text);
@@ -27,36 +27,32 @@ const ToDo = () => {
 
     const onPressAddHandler = () => {
         const payload = {
-            categoryId: "toDo",
-            note: {
-                id: Math.random().toString(),
-                value: inputValue,
-            }
+            id: Math.random().toString(),
+            value: inputValue,
         }
         dispatch(addNote(payload));
         setInputValue('')
     };
 
-    const onPressDelete = () => {
-        const payload = {
-            categoryId: "toDo",
-            note: {
-                id: Math.random().toString(),
-                value: inputValue,
-            }
-        }
-        dispatch(deleteNote(payload));
+    const onPressDeleteHandler = () => {
+        dispatch(deleteNote());
         setModalVisible(!isModalVisible);
     };
 
     const onHandleModal = (item) => {
         setModalVisible(!isModalVisible);
-        setSelectedItem(item);
+        const payload = {
+            note: item
+        }
+        dispatch(selectNote(payload));
     };
   
     const onPressCancel = () => {
         setModalVisible(!isModalVisible);
-        setSelectedItem(null);
+        const payload = {
+            note: null
+        }
+        dispatch(selectNote(payload));
     };
     
     return (
@@ -70,7 +66,7 @@ const ToDo = () => {
                 inputValue={inputValue}
             />
             <TaskList 
-                list={notes}
+                list={toDoNotes}
                 onHandleModal={onHandleModal}
             />
             <CustomModal
@@ -80,8 +76,8 @@ const ToDo = () => {
                 onPressCancel={onPressCancel}
                 deleteColor={orange}
                 deleteTitle="Yes, delete it!"
-                onPressDelete={onPressDelete}
-                selectedItem={selectedItem}
+                onPressDelete={onPressDeleteHandler}
+                selectedItem={selectedNote}
             />
         </View>
     );

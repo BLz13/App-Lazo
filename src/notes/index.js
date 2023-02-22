@@ -1,9 +1,10 @@
 import { combineReducers, createStore } from "redux";
-
-import { notesReducer } from "./reducer/index"
+import { reducerGeneral, reducerShopping, reducerToDo } from "./reducer/index"
 
 const rootReducer = combineReducers({
-    notes: notesReducer,
+    general: reducerGeneral,
+    shopping: reducerShopping,
+    toDo: reducerToDo,
 });
 
 export default createStore(rootReducer);

@@ -3,8 +3,10 @@ import { actionsTypes } from "../types/index";
 const { SELECT_NOTE, ADD_NOTE, DELETE_NOTE } = actionsTypes;
 
 const initialState = {
+    generalNotes:[],
+    shoppingNotes:[],
     toDoNotes:[],
-    selectedNote: null,
+    selected: null
 };
 
 const reducerToDo = ( state = initialState, action) => {

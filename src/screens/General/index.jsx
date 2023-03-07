@@ -1,4 +1,4 @@
-import { CustomModal, ListInput, TaskList } from '../../components/index'
+import { CustomModal, ImageSelector, ListInput, TaskList } from '../../components/index'
 import React, { useState } from 'react';
 import { addNote, deleteNote, selectNote } from "../../notes/actions/index"
 import { useDispatch, useSelector } from 'react-redux';
@@ -54,6 +54,8 @@ const General = () => {
         }
         dispatch(selectNote(payload));
     };
+
+    const onImage = (uri) => {};
     
     return (
         <View style={styles.appContainer}>
@@ -64,6 +66,9 @@ const General = () => {
                 onPressAddHandler={onPressAddHandler}
                 placeholder='add a new task'
                 inputValue={inputValue}
+            />
+            <ImageSelector 
+                onImage={onImage}
             />
             <TaskList 
                 list={generalNotes}

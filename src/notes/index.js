@@ -1,5 +1,7 @@
-import { combineReducers, createStore } from "redux";
+import { applyMiddleware, combineReducers, createStore } from "redux";
 import { reducerGeneral, reducerShopping, reducerToDo } from "./reducer/index"
+
+import thunk from "redux-thunk";
 
 const rootReducer = combineReducers({
     general: reducerGeneral,
@@ -7,4 +9,4 @@ const rootReducer = combineReducers({
     toDo: reducerToDo,
 });
 
-export default createStore(rootReducer);
+export default createStore(rootReducer, applyMiddleware(thunk));

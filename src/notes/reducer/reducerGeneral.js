@@ -4,7 +4,9 @@ const { SELECT_NOTE, ADD_NOTE, DELETE_NOTE } = actionsTypes;
 
 const initialState = {
     generalNotes:[],
-    selected: null,
+    shoppingNotes:[],
+    toDoNotes:[],
+    selected: null
 };
 
 const reducerGeneral = ( state = initialState, action) => {

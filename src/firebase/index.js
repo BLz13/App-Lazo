@@ -1,0 +1,1 @@
+export const REALTIME_DATABASE_URL = "https://noteit-ab150-default-rtdb.firebaseio.com/";

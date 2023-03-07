@@ -5,3 +5,4 @@ export {default as Header} from './Header/index';
 // export {default as MainMenuBtn} from './MainMenuBtn/index';
 export {default as OptionsMenuBtn} from './OptionsMenuBtn/index';
 export {default as Categories} from './Categories/index';
+export {default as ImageSelector} from './ImageSelector/index'

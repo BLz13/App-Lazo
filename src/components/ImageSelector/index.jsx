@@ -1,14 +1,15 @@
 import * as ImagePicker from "expo-image-picker";
 
-import { Alert, Button, Image, Text, View } from "react-native";
+import { Alert, Button, Image, Modal, Text, View } from "react-native";
 
 import { COLOURS } from "../../assets/COLOURS"
+import React from "react";
 import { styles } from "./styles"
 import { useState } from "react";
 
 const ImageSelector = (props) => {
 
-    const { onImage } = props;
+    const { onImage, isCameraModalVisible, onPressCancelCamera } = props;
     
     const [pickedUrl, setPickedUrl] = useState(null)
 
@@ -33,8 +34,9 @@ const ImageSelector = (props) => {
         console.log(pickedUrl);
     };
 
-    return(
-        <View style={styles.container}>
+    return (
+        <Modal visible={isCameraModalVisible} animationType='slide'>
+          <View style={styles.container}>
             <View style={styles.preview}>
                 {!pickedUrl ? (
                     <Text>There isn't an image selected yet</Text>
@@ -47,8 +49,20 @@ const ImageSelector = (props) => {
                 color={COLOURS.light.violet}
                 onPress={onHandlePressImage}
             />
+            <Button
+              color={COLOURS.light.pink}
+              title={"Save Image"}
+            //   onPress={onPressCancel}
+            />            
+            <Button
+                color={COLOURS.light.orange}
+                title={"Cancel"}
+                onPress={onPressCancelCamera}
+              />
         </View>
+      </Modal>
     )
 };
 
 export default ImageSelector;
+

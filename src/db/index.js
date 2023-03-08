@@ -6,7 +6,7 @@ export const init = () => {
     const promise = new Promise(( resolve, reject ) => {
         db.transaction((tx) => {
             tx.executeSql(
-                "CREATE TABLE IF DOSE NOT EXISTS places (id INTEGER PRIMARY KEY NO NULL, title TEXT NOT NULL, image TEXT NOT NULL, address TEXT NOT NULL, coords TEXT NOT NULL);",
+                "CREATE TABLE IF DOSE NOT EXISTS places (id INTEGER PRIMARY KEY NO NULL, note TEXT NOT NULL);",
                 [],
                 () => {
                     resolve();
@@ -19,3 +19,21 @@ export const init = () => {
     });
     return promise;
 };
+
+export const insertNote = (note) => {
+    const promise = new Promise(( resolve, reject ) => {
+        db.transaction((tx) => {
+            tx.executeSql(
+                "INSERT INTO places (note) VALUES (?);",
+                [note],
+                (_, result) => {
+                    resolve(result);
+                },
+                (_, err) => {
+                    reject(err);
+                }
+            )
+        })
+    });
+    return promise;
+}

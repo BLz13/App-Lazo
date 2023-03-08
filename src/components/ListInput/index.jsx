@@ -1,6 +1,9 @@
-import { Button, TextInput, View } from 'react-native';
+import { Button, TextInput, TouchableOpacity, View } from 'react-native';
+import React, { useState } from 'react';
 
-import React from 'react';
+import { COLOURS } from '../../assets/COLOURS';
+import { ImageSelector } from '../../components/index';
+import MaterialCommunityIcons   from "@expo/vector-icons/MaterialCommunityIcons";
 import { styles }  from './styles'
 
 const ListInput = (props) => {
@@ -14,6 +17,18 @@ const ListInput = (props) => {
       inputValue,
       className
     } = props;
+    
+    const [isCameraModalVisible, setCameraModalVisible] = useState(false);
+
+    const onHandleCameraModal = () => {
+      setCameraModalVisible(!isCameraModalVisible);
+    };
+
+    const onPressCancelCamera = () => {
+      setCameraModalVisible(!isCameraModalVisible);
+  };
+
+    const onImage = (uri) => {};
 
     function styleName(){
       switch (className) {
@@ -29,6 +44,7 @@ const ListInput = (props) => {
     }
 
     return(
+      <>
         <View style={styles[styleName()].inputContainer}>
           <TextInput 
             style={styles[styleName()].textInput}
@@ -37,13 +53,29 @@ const ListInput = (props) => {
             value={inputValue}
             onChangeText={onChangeInputHandler}
           />
+          <TouchableOpacity
+            style={styles[styleName()].listItemContainer}
+            onPress={ () => onHandleCameraModal() }
+          >
+            <MaterialCommunityIcons
+              name={"camera-outline"}
+              size={22}
+              color={COLOURS.light.black}
+            />
+          </TouchableOpacity>
           <Button
             disabled={!inputValue}
             title={buttonText}
             onPress={onPressAddHandler}
             color={buttonColor}
           />
-      </View>
+        </View>
+        <ImageSelector
+          onImage={onImage}
+          isCameraModalVisible={isCameraModalVisible}
+          onPressCancelCamera={onPressCancelCamera}
+        />
+      </>
     )
 };
 

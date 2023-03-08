@@ -4,13 +4,9 @@ import TabsNavigator from "./tabs"
 
 const AppNavigation = () => {
 
-    const navigationRef = useNavigationContainerRef();
-
-    const currentScreen = navigationRef.getCurrentRoute()
-
     return(
-        <NavigationContainer ref={navigationRef}>
-            <TabsNavigator currentScreen={currentScreen.name}/>
+        <NavigationContainer>
+            <TabsNavigator />
         </NavigationContainer>
     );
 };

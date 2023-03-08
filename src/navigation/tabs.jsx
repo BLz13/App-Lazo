@@ -7,16 +7,34 @@ import { styles } from './styles';
 
 const BottomTab = createBottomTabNavigator();
 
-const Tabs = () => {
+const Tabs = (props) => {
+
+    const { currentScreen } = props;
+
+    console.log(currentScreen);
+
+    function styleName(){
+        switch (currentScreen) {
+          case "general" : return "general"
+    
+          case "shopping" : return "shopping" 
+    
+          case "toDo" : return "toDo" 
+    
+          default:
+            break;
+        }
+    };
+
     return(
         <BottomTab.Navigator
             initialRouteName="General"
             screenOptions={{
-                headerStyle:styles.headerStyle,
-                headerTintColor:styles.headerTintColor,
-                tabBarLabelStyle:styles.tabBarLabelStyle,
+                headerShown: false,
+                tabBarLabelStyle:styles.shopping.tabBarLabelStyle,
                 tabBarActiveTintColor: COLOURS.light.orange,
-                tabBarInactiveTintColor: COLOURS.light.grey 
+                tabBarInactiveTintColor: COLOURS.light.grey,
+                tabBarHideOnKeyboard: true,
             }}
         >
             <BottomTab.Screen

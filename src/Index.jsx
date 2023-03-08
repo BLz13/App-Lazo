@@ -3,6 +3,7 @@ import { ActivityIndicator, View } from 'react-native';
 import AppNavigation from "./navigation/index"
 import { COLOURS } from './assets/COLOURS';
 import { Provider } from 'react-redux';
+import { init } from "./db";
 import notes from "./notes/index"
 import { styles } from './styles';
 import { useFonts } from "expo-font"
@@ -33,6 +34,15 @@ const App = () => {
       </View>
     );
   };
+
+  init()
+    .then(() => {
+      console.log("Database Initialized");
+    })
+    .catch((err) => {
+      console.log("Database Initialization Failed");
+      console.log(err);
+    });
  
   return (
     <Provider store={notes} >

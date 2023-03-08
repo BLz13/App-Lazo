@@ -66,6 +66,7 @@ const General = () => {
                 onPressAddHandler={onPressAddHandler}
                 placeholder='add a new task'
                 inputValue={inputValue}
+                className="general"
             />
             <ImageSelector 
                 onImage={onImage}
@@ -73,6 +74,7 @@ const General = () => {
             <TaskList 
                 list={generalNotes}
                 onHandleModal={onHandleModal}
+                className="general"
             />
             <CustomModal
                 isModalVisible={isModalVisible}
@@ -83,6 +85,7 @@ const General = () => {
                 deleteTitle="Yes, delete it!"
                 onPressDelete={onPressDeleteHandler}
                 selectedItem={noteSelected}
+                className="general"
             />
         </View>
     );

@@ -58,16 +58,18 @@ const Shopping = () => {
     return (
         <View style={styles.appContainer}>
             <ListInput 
-                buttonColor={violet}
+                buttonColor={black}
                 buttonText='Add'
                 onChangeInputHandler={onChangeInputHandler}
                 onPressAddHandler={onPressAddHandler}
                 placeholder='add a new task'
                 inputValue={inputValue}
+                className="shopping"
             />
             <TaskList 
                 list={shoppingNotes}
                 onHandleModal={onHandleModal}
+                className="shopping"
             />
             <CustomModal
                 isModalVisible={isModalVisible}
@@ -78,6 +80,7 @@ const Shopping = () => {
                 deleteTitle="Yes, delete it!"
                 onPressDelete={onPressDeleteHandler}
                 selectedItem={selectedNote}
+                className="shopping"
             />
         </View>
     );

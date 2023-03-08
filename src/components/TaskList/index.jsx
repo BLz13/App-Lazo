@@ -5,12 +5,13 @@ import { styles } from "./styles";
 
 const TaskList = (props) => {
 
-    const {list, onHandleModal} = props;
+    const {list, onHandleModal, className} = props;
 
     const renderItemList =  ({item}) => (
       <TaskItem
         onHandleModal={onHandleModal}
         item={item}
+        className={className}
       />
     );
     

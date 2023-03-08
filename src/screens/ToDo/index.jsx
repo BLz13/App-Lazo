@@ -64,10 +64,12 @@ const ToDo = () => {
                 onPressAddHandler={onPressAddHandler}
                 placeholder='add a new task'
                 inputValue={inputValue}
+                className="toDo"
             />
             <TaskList 
                 list={toDoNotes}
                 onHandleModal={onHandleModal}
+                className="toDo"
             />
             <CustomModal
                 isModalVisible={isModalVisible}
@@ -78,6 +80,7 @@ const ToDo = () => {
                 deleteTitle="Yes, delete it!"
                 onPressDelete={onPressDeleteHandler}
                 selectedItem={selectedNote}
+                className="toDo"
             />
         </View>
     );

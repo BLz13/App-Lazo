@@ -1,7 +1,7 @@
 import { Button, TextInput, View } from 'react-native';
 
 import React from 'react';
-import { styles } from './styles'
+import { styles }  from './styles'
 
 const ListInput = (props) => {
 
@@ -11,13 +11,27 @@ const ListInput = (props) => {
       onChangeInputHandler,
       onPressAddHandler,
       placeholder,
-      inputValue
+      inputValue,
+      className
     } = props;
 
+    function styleName(){
+      switch (className) {
+        case "general" : return "general"
+
+        case "shopping" : return "shopping" 
+
+        case "toDo" : return "toDo" 
+
+        default:
+          break;
+      }
+    }
+
     return(
-        <View style={styles.inputContainer}>
+        <View style={styles[styleName()].inputContainer}>
           <TextInput 
-            style={styles.textInput}
+            style={styles[styleName()].textInput}
             placeholder={placeholder}
             autoComplete="off"
             value={inputValue}

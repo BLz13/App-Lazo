@@ -5,14 +5,27 @@ import { styles } from './styles';
 
 const TaskItem = (props) => {
 
-  const { item, onHandleModal } = props;
+  const { item, onHandleModal, className } = props;
+
+  function styleName(){
+    switch (className) {
+      case "general" : return "general"
+
+      case "shopping" : return "shopping" 
+
+      case "toDo" : return "toDo" 
+
+      default:
+        break;
+    }
+  };
 
   return (
     <TouchableOpacity
-      style={styles.listItemContainer}
+      style={styles[styleName()].listItemContainer}
       onPress={ () => onHandleModal(item) }
     >
-      <Text style={styles.listItem}>{item.value}</Text>
+      <Text style={styles[styleName()].listItem}>{item.value}</Text>
     </TouchableOpacity>
   )
   

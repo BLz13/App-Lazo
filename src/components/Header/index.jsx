@@ -1,19 +1,21 @@
-import { Text, TouchableOpacity } from 'react-native';
+import { Text, TouchableOpacity, View, useColorScheme } from 'react-native';
 
 import React from 'react';
 import { styles } from './styles';
 
 const Header = (props) => {
 
-    const {headerText, onPress} = props;
-
     return(
+      <View style={styles.headerContainer}>
+        <View style={styles.oval} />
         <TouchableOpacity
-        style={styles.headerContainer}
-        onPress={onPress}
-      >
-        <Text style={styles.headerText}>{headerText}</Text>
-      </TouchableOpacity>
+          style={styles.settingsButton}
+          // onPress={onPress}
+        >
+          <Text style={styles.note}>♪</Text>
+          <Text style={styles.headerText}>'It</Text>
+        </TouchableOpacity>
+      </View>
     )
 }
 

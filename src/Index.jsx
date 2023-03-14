@@ -1,7 +1,9 @@
-import { ActivityIndicator, View } from 'react-native';
+import { ActivityIndicator, StatusBar, View, useColorScheme } from 'react-native';
+import { useEffect, useState } from 'react';
 
 import AppNavigation from "./navigation/index"
 import { COLOURS } from './assets/COLOURS';
+import { Header } from './components';
 import { Provider } from 'react-redux';
 import { init } from "./db";
 import notes from "./notes/index"
@@ -30,7 +32,10 @@ const App = () => {
   if (!loaded) {
     return(
       <View style={styles.containerLoader}>
-        <ActivityIndicator size='large' colors={COLOURS.light.orange} />
+        <ActivityIndicator
+          size='large'
+          colors={COLOURS[useColorScheme()].orange}
+        />
       </View>
     );
   };
@@ -47,6 +52,12 @@ const App = () => {
   return (
     <Provider store={notes} >
       <View style={styles.container}>
+        <StatusBar 
+          barStyle={ !useColorScheme() === 'light' ? 'light-content' : 'dark-content'}
+          translucent={true}
+          backgroundColor={'transparent'}
+        />
+        <Header />
         <AppNavigation />
       </View>
     </Provider>

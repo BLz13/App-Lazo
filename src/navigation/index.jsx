@@ -1,5 +1,4 @@
-import { NavigationContainer, useNavigationContainerRef } from "@react-navigation/native";
-
+import { NavigationContainer } from "@react-navigation/native";
 import TabsNavigator from "./tabs"
 
 const AppNavigation = () => {

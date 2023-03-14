@@ -1,8 +1,9 @@
 import * as ImagePicker from "expo-image-picker";
 
-import { Alert, Button, Image, Modal, Text, View } from "react-native";
+import { Alert, Button, Image, Modal, Text, TouchableOpacity, View } from "react-native";
 
 import { COLOURS } from "../../assets/COLOURS"
+import MaterialCommunityIcons   from "@expo/vector-icons/MaterialCommunityIcons";
 import React from "react";
 import { styles } from "./styles"
 import { useState } from "react";
@@ -35,30 +36,49 @@ const ImageSelector = (props) => {
     };
 
     return (
-        <Modal visible={isCameraModalVisible} animationType='slide'>
-          <View style={styles.container}>
-            <View style={styles.preview}>
-                {!pickedUrl ? (
-                    <Text>There isn't an image selected yet</Text>
-                ) : (
-                    <Image style={styles.image} source={{ uri: pickedUrl }} />
-                )}
+        <Modal
+            visible={isCameraModalVisible}
+            animationType='fade'
+            transparent={true}
+            statusBarTranslucent={true}
+        >
+          <View style={styles.modalBack}>
+            <View style={styles.modalContainer}>
+                <View style={ !pickedUrl ? styles.noImage : styles.previewBox }>
+                    {!pickedUrl ? (
+                        <Text style={styles.previewText}>There isn't an image selected yet</Text>
+                    ) : (
+                        <Image
+                            style={styles.previewImage}
+                            height={9}
+                            width={16}
+                            source={{ uri: pickedUrl }}
+                        />
+                    )}
+                </View>
+                <View style={styles.buttonsContainer}>
+                    <Button
+                        title="Select an Image"
+                        color={COLOURS.light.violet}
+                        onPress={onHandlePressImage}
+                    />
+                    <Button
+                    color={COLOURS.light.pink}
+                    title={"Save Image"}
+                    //   onPress={onPressCancel}
+                    />
+                </View>            
+                <TouchableOpacity
+                    onPress={onPressCancelCamera}
+                    style={styles.cancelIcon}
+                >
+                    <MaterialCommunityIcons
+                        name={"window-close"}
+                        size={22}
+                        color={COLOURS.light.black}
+                    />
+                </TouchableOpacity>
             </View>
-            <Button
-                title="Select an Image"
-                color={COLOURS.light.violet}
-                onPress={onHandlePressImage}
-            />
-            <Button
-              color={COLOURS.light.pink}
-              title={"Save Image"}
-            //   onPress={onPressCancel}
-            />            
-            <Button
-                color={COLOURS.light.orange}
-                title={"Cancel"}
-                onPress={onPressCancelCamera}
-              />
         </View>
       </Modal>
     )

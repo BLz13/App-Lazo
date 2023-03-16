@@ -1,44 +1,50 @@
 import { COLOURS } from "../assets/COLOURS"
 import { StyleSheet } from "react-native";
 
-export const styles = StyleSheet.create({
+export const styles = (theme) => StyleSheet.create({
 
     general:{
-        headerStyle:{
-            backgroundColor:COLOURS.light.grey,
-            shadowColor: COLOURS.light.black,
+        tabBar:{
+            height: "10%",
+            width: "95%",
+            position: "absolute",
+            left: "2.5%",
+            marginBottom: "2%",
+            borderRadius: 50,
+            overflow: "hidden",
+            backfaceVisibility: "hidden",
+            backgroundColor:COLOURS[theme].yellow,
             elevation: 24,
-        },
-        headerTintColor: COLOURS.light.orange,
-        headerTitleStyle:{
-            textAlign: "center",
-            fontFamily: "MediumItalic",
         }
     },
   
     shopping:{
-        headerStyle:{
-            backgroundColor:COLOURS.light.yellow,
-            shadowColor: COLOURS.light.black,
+        tabBar:{
+            height: "10%",
+            width: "95%",
+            position: "absolute",
+            left: "2.5%",
+            marginBottom: "2%",
+            borderRadius: 50,
+            overflow: "hidden",
+            backfaceVisibility: "hidden",
+            backgroundColor:COLOURS[theme].grey,
             elevation: 24,
-        },
-        headerTintColor: COLOURS.light.black,
-        headerTitleStyle:{
-            textAlign: "center",
-            fontFamily: "MediumItalic",
         }
     },
   
     toDo:{
-        headerStyle:{
-            backgroundColor:COLOURS.light.grey,
-            shadowColor: COLOURS.light.black,
+        tabBar:{
+            height: "10%",
+            width: "95%",
+            position: "absolute",
+            left: "2.5%",
+            marginBottom: "2%",
+            borderRadius: 50,
+            overflow: "hidden",
+            backfaceVisibility: "hidden",
+            backgroundColor:COLOURS[theme].theme,
             elevation: 24,
-        },
-        headerTintColor: COLOURS.light.orange,
-        headerTitleStyle:{
-            textAlign: "center",
-            fontFamily: "MediumItalic",
         }
     }
 });

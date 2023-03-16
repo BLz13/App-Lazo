@@ -1,10 +1,10 @@
 import { ActivityIndicator, StatusBar, View, useColorScheme } from 'react-native';
-import { useEffect, useState } from 'react';
+import { MD3LightTheme as DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 
 import AppNavigation from "./navigation/index"
 import { COLOURS } from './assets/COLOURS';
 import { Header } from './components';
-import { Provider } from 'react-redux';
+import { Provider as StoreProvider } from 'react-redux';
 import { init } from "./db";
 import notes from "./notes/index"
 import { styles } from './styles';
@@ -29,12 +29,20 @@ const App = () => {
     'BoldItalic': require('./assets/fonts/IBMPlexMono-BoldItalic.ttf')
   });
 
+  const theme = {
+    ...DefaultTheme,
+    myOwnProperty: true,
+    colors: {
+      secondaryContainer: "#FFFFFF0",
+    },
+  };
+
   if (!loaded) {
     return(
       <View style={styles.containerLoader}>
         <ActivityIndicator
           size='large'
-          colors={COLOURS[useColorScheme()].orange}
+          colors={COLOURS[useColorScheme()].red}
         />
       </View>
     );
@@ -50,17 +58,19 @@ const App = () => {
     });
  
   return (
-    <Provider store={notes} >
-      <View style={styles.container}>
-        <StatusBar 
-          barStyle={ !useColorScheme() === 'light' ? 'light-content' : 'dark-content'}
-          translucent={true}
-          backgroundColor={'transparent'}
-        />
-        <Header />
-        <AppNavigation />
-      </View>
-    </Provider>
+    <StoreProvider store={notes} >
+      <PaperProvider theme={theme}>
+        <View style={styles.container}>
+          <StatusBar 
+            barStyle={ !useColorScheme() === 'light' ? 'light-content' : 'dark-content'}
+            translucent={true}
+            backgroundColor={'transparent'}
+          />
+          <Header />
+          <AppNavigation />
+        </View>
+      </PaperProvider>
+    </StoreProvider>
   );
   
 };

@@ -6,7 +6,7 @@ import { COLOURS } from './assets/COLOURS';
 import { Header } from './components';
 import { Provider as StoreProvider } from 'react-redux';
 import { init } from "./db";
-import notes from "./notes/index"
+import redux from "./redux/index"
 import { styles } from './styles';
 import { useFonts } from "expo-font"
 
@@ -29,14 +29,6 @@ const App = () => {
     'BoldItalic': require('./assets/fonts/IBMPlexMono-BoldItalic.ttf')
   });
 
-  const theme = {
-    ...DefaultTheme,
-    myOwnProperty: true,
-    colors: {
-      secondaryContainer: "#FFFFFF0",
-    },
-  };
-
   if (!loaded) {
     return(
       <View style={styles.containerLoader}>
@@ -58,18 +50,15 @@ const App = () => {
     });
  
   return (
-    <StoreProvider store={notes} >
-      <PaperProvider theme={theme}>
-        <View style={styles.container}>
-          <StatusBar 
-            barStyle={ !useColorScheme() === 'light' ? 'light-content' : 'dark-content'}
-            translucent={true}
-            backgroundColor={'transparent'}
-          />
-          <Header />
-          <AppNavigation />
-        </View>
-      </PaperProvider>
+    <StoreProvider store={redux} >
+      <View style={styles.container}>
+        <StatusBar 
+          barStyle={ useColorScheme() !== 'light' ? 'light-content' : 'dark-content'}
+          translucent={true}
+          backgroundColor={'transparent'}
+        />
+        <AppNavigation/>
+      </View>
     </StoreProvider>
   );
   

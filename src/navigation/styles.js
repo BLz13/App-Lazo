@@ -1,50 +1,17 @@
-import { COLOURS } from "../assets/COLOURS"
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 
-export const styles = (theme) => StyleSheet.create({
-
-    general:{
-        tabBar:{
-            height: "10%",
-            width: "95%",
-            position: "absolute",
-            left: "2.5%",
-            marginBottom: "2%",
-            borderRadius: 50,
-            overflow: "hidden",
-            backfaceVisibility: "hidden",
-            backgroundColor:COLOURS[theme].yellow,
-            elevation: 24,
-        }
-    },
-  
-    shopping:{
-        tabBar:{
-            height: "10%",
-            width: "95%",
-            position: "absolute",
-            left: "2.5%",
-            marginBottom: "2%",
-            borderRadius: 50,
-            overflow: "hidden",
-            backfaceVisibility: "hidden",
-            backgroundColor:COLOURS[theme].grey,
-            elevation: 24,
-        }
-    },
-  
-    toDo:{
-        tabBar:{
-            height: "10%",
-            width: "95%",
-            position: "absolute",
-            left: "2.5%",
-            marginBottom: "2%",
-            borderRadius: 50,
-            overflow: "hidden",
-            backfaceVisibility: "hidden",
-            backgroundColor:COLOURS[theme].theme,
-            elevation: 24,
-        }
+export const styles = StyleSheet.create({
+    tabBar:{
+        height: Dimensions.get('window').height / 10,
+        marginBottom: Dimensions.get('window').height / 92,
+        width: "95%",
+        position: "absolute",
+        left: "2.5%",
+        borderRadius: 50,
+        overflow: "hidden",
+        elevation: 24,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-evenly"
     }
-});
+ });

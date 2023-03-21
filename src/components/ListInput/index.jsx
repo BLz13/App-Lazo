@@ -8,15 +8,7 @@ import { styles }  from './styles'
 
 const ListInput = (props) => {
 
-    const {
-      buttonColor,
-      buttonText,
-      onChangeInputHandler,
-      onPressAddHandler,
-      placeholder,
-      inputValue,
-      className
-    } = props;
+    const { onChangeInputHandler, onPressAddHandler, inputValue, className } = props;
     
     const [isCameraModalVisible, setCameraModalVisible] = useState(false);
 
@@ -26,49 +18,54 @@ const ListInput = (props) => {
 
     const onPressCancelCamera = () => {
       setCameraModalVisible(!isCameraModalVisible);
-  };
+    };
 
     const onImage = (uri) => {};
 
-    function styleName(){
+    function placeholderText() {
       switch (className) {
-        case "general" : return "general"
 
-        case "shopping" : return "shopping" 
+        case "general": return ("Add new note");
+        
+        case "shopping": return ("Add new item");
 
-        case "toDo" : return "toDo" 
-
-        default:
-          break;
+        case "toDo": return ("Add new task");
+      
+        default: return ("Add new note");
       }
     }
 
     return(
       <>
-        <View style={styles[styleName()].inputContainer}>
+        <View style={[styles.inputContainer]}>
           <TextInput 
-            style={styles[styleName()].textInput}
-            placeholder={placeholder}
+            style={[styles.textInput]}
+            placeholder={placeholderText()}
             autoComplete="off"
             value={inputValue}
             onChangeText={onChangeInputHandler}
           />
           <TouchableOpacity
-            style={styles[styleName()].listItemContainer}
-            onPress={ () => onHandleCameraModal() }
+            style={[styles.inputIcons]}
+            onPress={onHandleCameraModal}
           >
             <MaterialCommunityIcons
               name={"camera-outline"}
-              size={22}
+              size={25}
               color={COLOURS.light.black}
             />
           </TouchableOpacity>
-          <Button
-            disabled={!inputValue}
-            title={buttonText}
+          <TouchableOpacity
+            style={[styles.inputIcons]}
             onPress={onPressAddHandler}
-            color={buttonColor}
-          />
+            disabled={!inputValue}
+          >
+            <MaterialCommunityIcons
+              name={"plus-box-outline"}
+              size={25}
+              color={ inputValue ? COLOURS.light.black : COLOURS.light.grey }
+            />
+          </TouchableOpacity>
         </View>
         <ImageSelector
           onImage={onImage}

@@ -1,6 +1,6 @@
 import { CustomModal, ListInput, TaskList } from '../../components/index'
 import React, { useState } from 'react';
-import { addNote, deleteNote, selectNote } from "../../notes/actions/index"
+import { addNote, deleteNote, selectNote } from "../../redux/actions/index"
 import { useDispatch, useSelector } from 'react-redux';
 
 import { COLOURS } from "../../assets/COLOURS"
@@ -9,13 +9,13 @@ import { styles } from './styles';
 
 const General = () => {
 
-    const { black, blue, grey, lightBlue, orange, pink, violet, yellow } = COLOURS.light;
-
     const dispatch = useDispatch();
 
     const generalNotes = useSelector( (state) => state.general.generalNotes);
 
     const noteSelected = useSelector( (state) => state.general.selected);
+
+    const theme = useSelector( (state) => state.appSettings.appTheme);
 
     const [inputValue, setInputValue] = useState("");
 
@@ -58,7 +58,7 @@ const General = () => {
     return (
         <View style={styles.appContainer}>
             <ListInput 
-                buttonColor={violet}
+                buttonColor={COLOURS[theme].alt}
                 buttonText='Add'
                 onChangeInputHandler={onChangeInputHandler}
                 onPressAddHandler={onPressAddHandler}
@@ -73,10 +73,10 @@ const General = () => {
             />
             <CustomModal
                 isModalVisible={isModalVisible}
-                cancelColor={lightBlue}
+                cancelColor={COLOURS[theme].alt}
                 cancelTitle="No, go back"
                 onPressCancel={onPressCancel}
-                deleteColor={orange}
+                deleteColor={COLOURS[theme].alt}
                 deleteTitle="Yes, delete it!"
                 onPressDelete={onPressDeleteHandler}
                 selectedItem={noteSelected}

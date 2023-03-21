@@ -7,19 +7,21 @@ import { COLOURS } from "../../assets/COLOURS"
 import { View } from 'react-native';
 import { styles } from './styles';
 
-const Shopping = () => {
-
-    const { black, blue, grey, lightBlue, orange, pink, violet, yellow } = COLOURS.light;
+const NotesPage = ({ route }) => {
 
     const dispatch = useDispatch();
 
-    const shoppingNotes = useSelector( (state) => state.shopping.shoppingNotes);
-    
-    const selectedNote = useSelector( (state) => state.shopping.selectedNote);
+    const generalNotes = useSelector( (state) => state.general.generalNotes);
+
+    const noteSelected = useSelector( (state) => state.general.selected);
+
+    const theme = useSelector( (state) => state.appSettings.appTheme);
 
     const [inputValue, setInputValue] = useState("");
 
     const [isModalVisible, setModalVisible] = useState(false);
+
+    const currentScreen = route.name;
 
     const onChangeInputHandler = (text) => {
         setInputValue(text);
@@ -54,36 +56,33 @@ const Shopping = () => {
         }
         dispatch(selectNote(payload));
     };
-    
+
     return (
         <View style={styles.appContainer}>
-            <ListInput 
-                buttonColor={black}
-                buttonText='Add'
+            <ListInput
                 onChangeInputHandler={onChangeInputHandler}
                 onPressAddHandler={onPressAddHandler}
-                placeholder='add a new task'
                 inputValue={inputValue}
-                className="shopping"
+                className={currentScreen}
             />
             <TaskList 
-                list={shoppingNotes}
+                list={generalNotes}
                 onHandleModal={onHandleModal}
-                className="shopping"
+                className={currentScreen}
             />
             <CustomModal
                 isModalVisible={isModalVisible}
-                cancelColor={lightBlue}
+                cancelColor={COLOURS[theme].alt}
                 cancelTitle="No, go back"
                 onPressCancel={onPressCancel}
-                deleteColor={orange}
+                deleteColor={COLOURS[theme].alt}
                 deleteTitle="Yes, delete it!"
                 onPressDelete={onPressDeleteHandler}
-                selectedItem={selectedNote}
-                className="shopping"
+                selectedItem={noteSelected}
+                className={currentScreen}
             />
         </View>
     );
 };
 
-export default Shopping;
+export default NotesPage;

@@ -2,25 +2,27 @@ import { Dimensions, StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
     modalBack:{
-      alignSelf:'center',
-      flex: 1,
-      alignItems: "center",
-      width: '100%',
-      backgroundColor: '#0002'
+        alignSelf:'center',
+        alignItems: "center",
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height,
+        backgroundColor: '#0002'
     },
     modalContainer:{
-      top: Dimensions.get('window').height - 450,
-      borderRadius: 30,
-      paddingVertical: 40,
-      paddingHorizontal: 20,
-      aspectRatio: 1,
-      width: "90%",
-      display: "flex",
-      backgroundColor: "white",
-      flexDirection: "column",
-      flexWrap: "nowrap",
-      alignItems: "center",
-      justifyContent: "space-between"
+        borderRadius: 30,
+        paddingVertical: 40,
+        paddingHorizontal: 20,
+        aspectRatio: 1,
+        elevation: 24,
+        width: "95%",
+        display: "flex",
+        backgroundColor: "white",
+        flexDirection: "column",
+        flexWrap: "nowrap",
+        alignItems: "center",
+        justifyContent: "space-between",
+        position: "absolute",
+        top: Dimensions.get('window').height - (Dimensions.get('window').width * 0.96),
     },
     previewBox: {
         flex: 3,

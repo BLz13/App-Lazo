@@ -1,6 +1,6 @@
 import { CustomModal, ListInput, TaskList } from '../../components/index'
 import React, { useState } from 'react';
-import { addNote, deleteNote, selectNote } from "../../notes/actions/index"
+import { addNote, deleteNote, selectNote } from "../../redux/actions/index"
 import { useDispatch, useSelector } from 'react-redux';
 
 import { COLOURS } from "../../assets/COLOURS"

@@ -1,76 +1,37 @@
-import { General, Shopping, ToDo } from '../screens/index'
-import { useEffect, useState } from 'react';
+import { General, NotesPage, Shopping, ToDo } from '../screens/index'
 
 import { COLOURS } from "../assets/COLOURS";
+import { Header } from '../components/index';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { styles } from './styles';
-import { useColorScheme } from 'react-native';
+import { useSelector } from 'react-redux';
 
-const BottomTab = createMaterialBottomTabNavigator();
+const BottomTab = createBottomTabNavigator();
 
-const Tabs = (props) => {
+const Tabs = () => {
 
-    const { currentScreen } = props;
-
-    const [theme] = useState(useColorScheme() !== "light" ?  "light" : "dark");
-
-    function barStyle(){
-        switch (currentScreen) {
-          case "general" : return styles(theme).general.tabBar
-    
-          case "shopping" : return styles(theme).shopping.tabBar
-    
-          case "toDo" : return styles(theme).toDo.tabBar
-    
-          default: return styles(theme).general.tabBar
-        }
-    };
-
-    function colorActive(){
-        switch (currentScreen) {
-          case "general" : return COLOURS[theme].alt
-    
-          case "shopping" : return COLOURS[theme].alt
-    
-          case "toDo" : return COLOURS[theme].alt
-    
-          default: return COLOURS[theme].theme
-        }
-    };
-
-    function colorInactive(){
-        switch (currentScreen) {
-          case "general" : return COLOURS[theme].grey
-    
-          case "shopping" : return COLOURS[theme].theme
-    
-          case "toDo" : return COLOURS[theme].grey
-    
-          default: return COLOURS[theme].grey
-        }
-    };
+    const theme = useSelector( (state) => state.appSettings.appTheme);
 
     return(
         <BottomTab.Navigator
             initialRouteName="General"
-            activeColor={colorActive()}
-            inactiveColor={colorInactive()}
-            barStyle={barStyle()}
             backBehavior={"none"}
-            shifting={true}
             screenOptions={{
-                headerShown: false,
                 tabBarHideOnKeyboard: true,
-
+                header: ({ route }) => {
+                    return <Header currentScreen={route.name} />
+                }
             }}
         >
             <BottomTab.Screen
                 name="general"
-                component={General}
-                options={{ 
+                component={NotesPage}
+                options={{
                     title: "General",
-                    tabBarColor: COLOURS[theme].red,
+                    tabBarStyle: [styles.tabBar, {backgroundColor: COLOURS[theme].alt}],
+                    tabBarActiveTintColor: COLOURS[theme].theme,
+                    tabBarInactiveTintColor: COLOURS[theme].grey,
                     tabBarIcon: ( {focused, color} ) => (
                         <MaterialCommunityIcons
                             name={ focused ? "notebook" : "notebook-outline" }
@@ -82,10 +43,12 @@ const Tabs = (props) => {
             />
             <BottomTab.Screen
                 name="shopping"
-                component={Shopping}
-                options={{ 
+                component={NotesPage}
+                options={{
                     title: "Shopping",
-                    tabBarColor: COLOURS[theme].yellow,
+                    tabBarStyle: [styles.tabBar, {backgroundColor: COLOURS[theme].alt}],
+                    tabBarActiveTintColor: COLOURS[theme].theme,
+                    tabBarInactiveTintColor: COLOURS[theme].grey,
                     tabBarIcon: ( {focused, color} ) => (
                         <MaterialCommunityIcons
                             name={ focused ? "note-text" : "note-text-outline" }
@@ -97,10 +60,12 @@ const Tabs = (props) => {
             />
             <BottomTab.Screen
                 name="toDo"
-                component={ToDo}
-                options={{ 
+                component={NotesPage}
+                options={{
                     title: "To Do",
-                    tabBarColor: COLOURS[theme].violet,
+                    tabBarStyle: [styles.tabBar, {backgroundColor: COLOURS[theme].alt}],
+                    tabBarActiveTintColor: COLOURS[theme].theme,
+                    tabBarInactiveTintColor: COLOURS[theme].grey,
                     tabBarIcon: ( {focused, color} ) => (
                         <MaterialCommunityIcons
                             name={ focused ? "notebook-check" : "notebook-check-outline" }

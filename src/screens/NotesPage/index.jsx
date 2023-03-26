@@ -9,17 +9,17 @@ import { styles } from './styles';
 
 const NotesPage = ({ route }) => {
 
+    const currentScreen = route.name;
+
     const dispatch = useDispatch();
 
-    const generalNotes = useSelector( (state) => state.general.generalNotes);
+    const notes = useSelector( (state) => state.notesReducer[currentScreen])
 
-    const noteSelected = useSelector( (state) => state.general.selected);
+    const noteSelected = useSelector( (state) => state.notesReducer.selected);
 
     const [inputValue, setInputValue] = useState("");
 
     const [isModalVisible, setModalVisible] = useState(false);
-
-    const currentScreen = route.name;
     
     const theme = ( useColorScheme() === "light" ? "light" : "dark" );
 
@@ -29,31 +29,33 @@ const NotesPage = ({ route }) => {
 
     const onPressAddHandler = () => {
         const payload = {
-            id: Math.random().toString(),
-            value: inputValue,
+            noteData:{
+                id: Math.random().toString(),
+                value: inputValue
+            },
+            currentScreen: currentScreen
         }
         dispatch(addNote(payload));
         setInputValue('')
     };
 
     const onPressDeleteHandler = () => {
-        dispatch(deleteNote());
         setModalVisible(!isModalVisible);
+        dispatch(deleteNote());
     };
 
     const onHandleModal = (item) => {
         setModalVisible(!isModalVisible);
         const payload = {
-            note: item
+            note: item,
+            currentScreen: currentScreen
         }
         dispatch(selectNote(payload));
     };
   
     const onPressCancel = () => {
         setModalVisible(!isModalVisible);
-        const payload = {
-            note: null
-        }
+        const payload = null;
         dispatch(selectNote(payload));
     };
 
@@ -83,7 +85,7 @@ const NotesPage = ({ route }) => {
                 currentScreen={currentScreen}
             />
             <TaskList 
-                list={generalNotes}
+                list={notes}
                 onHandleModal={onHandleModal}
                 currentScreen={currentScreen}
             />

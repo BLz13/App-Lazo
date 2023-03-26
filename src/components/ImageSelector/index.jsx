@@ -1,6 +1,6 @@
 import * as ImagePicker from "expo-image-picker";
 
-import { Alert, Button, Image, Modal, Text, TouchableOpacity, View } from "react-native";
+import { Alert, Button, Image, Modal, Text, TouchableOpacity, View, useColorScheme } from "react-native";
 
 import { COLOURS } from "../../assets/COLOURS"
 import MaterialCommunityIcons   from "@expo/vector-icons/MaterialCommunityIcons";
@@ -13,6 +13,8 @@ const ImageSelector = (props) => {
     const { onImage, isCameraModalVisible, onPressCancelCamera } = props;
     
     const [pickedUrl, setPickedUrl] = useState(null)
+
+    const theme = ( useColorScheme() === "light" ? "light" : "dark" )
 
     const verifyPermissions = async () => {
         const { status } = await ImagePicker.requestCameraPermissionsAsync();
@@ -59,23 +61,23 @@ const ImageSelector = (props) => {
                 <View style={styles.buttonsContainer}>
                     <Button
                         title="Select an Image"
-                        color={COLOURS.light.violet}
-                        onPress={onHandlePressImage}
+                        color={COLOURS[theme].violet}
+                        onPress={ () => onHandlePressImage() }
                     />
                     <Button
-                    color={COLOURS.light.pink}
+                    color={COLOURS[theme].pink}
                     title={"Save Image"}
                     //   onPress={onPressCancel}
                     />
                 </View>
                 <TouchableOpacity
-                    onPress={onPressCancelCamera}
+                    onPress={ () => onPressCancelCamera() }
                     style={styles.cancelIcon}
                 >
                     <MaterialCommunityIcons
                         name={"window-close"}
                         size={22}
-                        color={COLOURS.light.black}
+                        color={COLOURS[theme].black}
                     />
                 </TouchableOpacity>
             </View>

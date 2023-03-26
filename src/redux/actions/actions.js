@@ -1,6 +1,6 @@
 import { actionsTypes } from "../types/index";
 
-const { SELECT_NOTE, ADD_NOTE, DELETE_NOTE, CHANGE_THEME, CHANGE_PAGE } = actionsTypes;
+const { SELECT_NOTE, ADD_NOTE, DELETE_NOTE } = actionsTypes;
 
 export const selectNote = (data) => ({
     type: SELECT_NOTE,
@@ -15,7 +15,3 @@ export const addNote = (data) => ({
 export const deleteNote = () => ({
     type: DELETE_NOTE,
 });
-
-export const changeTheme = () => ({
-    type: CHANGE_THEME,
-})

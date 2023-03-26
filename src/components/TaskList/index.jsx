@@ -5,14 +5,10 @@ import { styles } from "./styles";
 
 const TaskList = (props) => {
 
-    const {list, onHandleModal, className} = props;
+    const {list, onHandleModal, currentScreen} = props;
 
     const renderItemList =  ({item}) => (
-      <TaskItem
-        onHandleModal={onHandleModal}
-        item={item}
-        className={className}
-      />
+      <TaskItem onHandleModal={onHandleModal} item={item} currentScreen={currentScreen}  />
     );
     
     const keyExtractorList =  ( item ) => item.id;

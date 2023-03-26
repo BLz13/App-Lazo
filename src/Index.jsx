@@ -1,9 +1,7 @@
 import { ActivityIndicator, StatusBar, View, useColorScheme } from 'react-native';
-import { MD3LightTheme as DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 
 import AppNavigation from "./navigation/index"
 import { COLOURS } from './assets/COLOURS';
-import { Header } from './components';
 import { Provider as StoreProvider } from 'react-redux';
 import { init } from "./db";
 import redux from "./redux/index"

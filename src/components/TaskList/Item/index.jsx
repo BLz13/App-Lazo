@@ -1,31 +1,65 @@
-import { Text, TouchableOpacity } from 'react-native'
+import { Text, TouchableOpacity, useColorScheme } from 'react-native'
 
+import { COLOURS } from '../../../assets/COLOURS';
 import React from "react";
 import { styles } from './styles';
 
 const TaskItem = (props) => {
 
-  const { item, onHandleModal, className } = props;
+  const { item, onHandleModal, currentScreen } = props;
+  
+  const theme = ( useColorScheme() === "light" ? "light" : "dark" );
 
-  function styleName(){
-    switch (className) {
-      case "general" : return "general"
+  function textColors() {
+    switch (currentScreen) {
+        case "general" : return (
+            (theme === "light") ? COLOURS[theme].alt : COLOURS[theme].alt
+        )
+        case "shopping" : return (
+            (theme === "light") ? COLOURS[theme].alt : COLOURS[theme].alt
+        )
 
-      case "shopping" : return "shopping" 
+        case "toDo" : return (
+            (theme === "light") ? COLOURS[theme].alt : COLOURS[theme].alt
+        )
 
-      case "toDo" : return "toDo" 
+        default: return (
+            (theme === "light") ? COLOURS[theme].alt : COLOURS[theme].alt
+        )
+    };
+  };
 
-      default:
-        break;
-    }
+  function borderColors(){
+    switch (currentScreen) {
+        case "general" : return (
+            (theme === "light") ? COLOURS[theme].alt : COLOURS[theme].alt
+        )
+        case "shopping" : return (
+            (theme === "light") ? COLOURS[theme].alt : COLOURS[theme].alt
+        )
+
+        case "toDo" : return (
+            (theme === "light") ? COLOURS[theme].alt : COLOURS[theme].alt
+        )
+
+        default: return (
+            (theme === "light") ? COLOURS[theme].alt : COLOURS[theme].alt
+        )
+    };
   };
 
   return (
-    <TouchableOpacity
-      style={styles[styleName()].listItemContainer}
-      onPress={ () => onHandleModal(item) }
-    >
-      <Text style={styles[styleName()].listItem}>{item.value}</Text>
+    <TouchableOpacity style={styles.listItemContainer} onPress={ () => onHandleModal(item) } >
+      <Text
+          style={[
+              styles.listItem, {
+                color: textColors(), 
+                borderColor: borderColors()
+              }
+            ]}
+      >
+          {item.value}
+      </Text>
     </TouchableOpacity>
   )
   

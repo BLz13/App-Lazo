@@ -4,15 +4,12 @@ import { Text, TouchableOpacity, View } from 'react-native';
 import { COLOURS } from '../../assets/COLOURS';
 import SettingsModal from '../SettingsModal';
 import { styles } from './styles';
-import { useSelector } from 'react-redux';
 
 const Header = (props) => {
 
-  const { currentScreen } = props;
+  const { currentScreen, theme } = props;
   
   const [isModalVisible, setModalVisible] = useState(false);
-
-  const theme = useSelector( (state) => state.appSettings.appTheme);
 
   const onPressOpensSettings = () => {
     setModalVisible(!isModalVisible);
@@ -24,25 +21,51 @@ const Header = (props) => {
 
   function currentColor(){
     switch (currentScreen) {
-      case "general" : return COLOURS[theme].theme;
+      case "general" : return (
+          (theme === "light") ? {backgroundColor: COLOURS[theme].theme} : {backgroundColor: COLOURS[theme].darkGrey}
+      )
+      case "shopping" : return (
+          (theme === "light") ? {backgroundColor: COLOURS[theme].theme} : {backgroundColor: COLOURS[theme].grey}
+      )
 
-      case "shopping" : return COLOURS[theme].alt;
+      case "toDo" : return (
+          (theme === "light") ? {backgroundColor: COLOURS[theme].theme} : {backgroundColor: COLOURS[theme].theme}
+      )
 
-      case "toDo" : return COLOURS[theme].theme;
+      default: return (
+          (theme === "light") ? {backgroundColor: COLOURS[theme].theme} : {backgroundColor: COLOURS[theme].darkGrey}
+      )
+  };
+  };
 
-      default: return COLOURS[theme].theme;
-    }
-};
+  function textColor(){
+    switch (currentScreen) {
+      case "general" : return (
+          (theme === "light") ? COLOURS[theme].alt : COLOURS[theme].cream
+      )
+      case "shopping" : return (
+          (theme === "light") ? COLOURS[theme].alt : COLOURS[theme].cream
+      )
+
+      case "toDo" : return (
+          (theme === "light") ? COLOURS[theme].alt : COLOURS[theme].cream
+      )
+
+      default: return (
+          (theme === "light") ? COLOURS[theme].alt : COLOURS[theme].cream
+      )
+  };
+  };
 
     return(
       <View style={[{}, styles.headerContainer]}>
-        <View style={[{backgroundColor: currentColor()}, styles.oval]} />
+        <View style={[currentColor(), styles.oval]} />
         <TouchableOpacity
           style={[{}, styles.settingsButton]}
           onPress={ () => onPressOpensSettings() }
         >
-          <Text style={[{}, styles.note]}>♪</Text>
-          <Text style={[{}, styles.headerText]}>'It</Text>
+          <Text style={[{color: textColor()}, styles.note]}>♪</Text>
+          <Text style={[{color: textColor()}, styles.headerText]}>'It</Text>
         </TouchableOpacity>
         <SettingsModal
           isModalVisible={isModalVisible}

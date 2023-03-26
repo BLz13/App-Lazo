@@ -1,13 +1,12 @@
 import { Button, Modal, Text, TouchableOpacity, View } from 'react-native'
 
-import { COLOURS } from '../../assets/COLOURS';
 import MaterialCommunityIcons   from "@expo/vector-icons/MaterialCommunityIcons";
 import React from "react";
 import { styles } from "./styles";
 
 const CustomModal = (props) => {
 
-    const { isModalVisible, selectedItem, cancelColor, cancelTitle, deleteColor, deleteTitle, onPressCancel, onPressDelete} = props;
+    const { isModalVisible, selectedItem, onPressCancel, onPressDelete} = props;
 
     return (
       <Modal

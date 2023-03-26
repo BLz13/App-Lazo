@@ -14,13 +14,11 @@ export const styles = StyleSheet.create({
     justifyContent:'space-evenly',
   },
   textInput:{
-    marginBottom:5,
+    paddingBottom: -5,
     width: '70%',
     height: 40,
     opacity: 0.7,
     borderBottomWidth:2,
     fontFamily: "Italic",
-  },
-  inputIcons: {}
-  
+  }  
 });

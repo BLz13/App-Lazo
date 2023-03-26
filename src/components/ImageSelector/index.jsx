@@ -67,7 +67,7 @@ const ImageSelector = (props) => {
                     title={"Save Image"}
                     //   onPress={onPressCancel}
                     />
-                </View>            
+                </View>
                 <TouchableOpacity
                     onPress={onPressCancelCamera}
                     style={styles.cancelIcon}

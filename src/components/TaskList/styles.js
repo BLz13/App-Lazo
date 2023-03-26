@@ -1,11 +1,8 @@
-import { COLOURS } from "../../assets/COLOURS"
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   listContainer:{
-    marginTop: 20,
-    width: '100%',
-    flex: 8,
-    borderRadius: 20,
+    flex: 1,
+    width: Dimensions.get('window').width * 0.95,
   }
 });

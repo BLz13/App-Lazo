@@ -42,7 +42,6 @@ const NotesPage = ({ route }) => {
 
     const onHandleModal = (item) => {
         setModalVisible(!isModalVisible);
-        console.log(item);
         const payload = {
             id: item.id,
             category: item.category,

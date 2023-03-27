@@ -98,6 +98,7 @@ const ListInput = (props) => {
               }
             ]}
             placeholder={placeholderText()}
+            placeholderTextColor={textColors()}
             autoComplete="off"
             value={inputValue}
             onChangeText={onChangeInputHandler}

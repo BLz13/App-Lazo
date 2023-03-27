@@ -33,8 +33,6 @@ const ImageSelector = (props) => {
                 value: inputValue,
                 image: pickedUrl
             }
-            console.log("saving image with image");
-            console.log(payload);
             dispatch(saveNote(payload));
         };
         setCameraModalVisible(!isCameraModalVisible);

@@ -18,8 +18,6 @@ const CustomModal = (props) => {
       if (!noteSelected) {return ""} { return `"${noteSelected.value}"`}
     };
 
-    console.log(noteSelected);
-
     return (
       <Modal
       visible={isModalVisible}

@@ -21,7 +21,7 @@
       "supportsTablet": true
     },
     "android": {
-      "package" : "com.note-it",
+      "package": "com.note.it",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#EEE8D3"

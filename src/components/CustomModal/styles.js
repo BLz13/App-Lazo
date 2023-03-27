@@ -39,5 +39,15 @@ export const styles = StyleSheet.create({
     alignItems:"center",
     justifyContent: "space-evenly",
     width: "100%",
-  } 
+  },
+  previewBox: {
+    width: "90%",
+    aspectRatio: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  previewImage:{
+      width: "100%",
+      height: "100%"
+  },
 });

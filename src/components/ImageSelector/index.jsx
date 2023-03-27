@@ -1,20 +1,46 @@
 import * as ImagePicker from "expo-image-picker";
 
-import { Alert, Button, Image, Modal, Text, TouchableOpacity, View, useColorScheme } from "react-native";
+import { Alert, Button, Image, Modal, Text, TextInput, TouchableOpacity, View, useColorScheme } from "react-native";
 
 import { COLOURS } from "../../assets/COLOURS"
 import MaterialCommunityIcons   from "@expo/vector-icons/MaterialCommunityIcons";
 import React from "react";
+import { addNote } from '../../redux/actions';
 import { styles } from "./styles"
+import { useDispatch } from 'react-redux';
 import { useState } from "react";
 
 const ImageSelector = (props) => {
 
-    const { onImage, isCameraModalVisible, onPressCancelCamera } = props;
+    const { isCameraModalVisible, onPressCancelCamera, setCameraModalVisible, currentScreen } = props;
     
-    const [pickedUrl, setPickedUrl] = useState(null)
+    const dispatch = useDispatch();
+
+    const [pickedUrl, setPickedUrl] = useState(null);
+    
+    const [inputValue, setInputValue] = useState("");
 
     const theme = ( useColorScheme() === "light" ? "light" : "dark" )
+
+    const onChangeInputHandler = (text) => {
+        setInputValue(text);
+    };
+
+    const onPressSaveImage = () => {
+        if (pickedUrl !== null) {
+            const payload = {
+                noteData:{
+                    id: Math.random().toString(),
+                    value: inputValue,
+                    url: pickedUrl,
+                    isImage: true
+                },
+                currentScreen: currentScreen
+            }
+            dispatch(addNote(payload));
+        };
+        setCameraModalVisible(!isCameraModalVisible);
+    };
 
     const verifyPermissions = async () => {
         const { status } = await ImagePicker.requestCameraPermissionsAsync();
@@ -33,8 +59,6 @@ const ImageSelector = (props) => {
             quality: 0.7,
         });
         setPickedUrl(image.uri);
-        onImage(image.uri);
-        console.log(pickedUrl);
     };
 
     return (
@@ -58,6 +82,18 @@ const ImageSelector = (props) => {
                         />
                     )}
                 </View>
+                <TextInput
+                    style={[
+                    styles.textInput, {
+                        color: COLOURS[theme].alt,
+                        borderColor: COLOURS[theme].alt
+                    }
+                    ]}
+                    placeholder={"Add a title to the image"}
+                    autoComplete="off"
+                    value={inputValue}
+                    onChangeText={onChangeInputHandler}
+                />
                 <View style={styles.buttonsContainer}>
                     <Button
                         title="Select an Image"
@@ -65,9 +101,10 @@ const ImageSelector = (props) => {
                         onPress={ () => onHandlePressImage() }
                     />
                     <Button
-                    color={COLOURS[theme].pink}
-                    title={"Save Image"}
-                    //   onPress={onPressCancel}
+                        color={COLOURS[theme].pink}
+                        title={"Save Image"}
+                        disabled={(!inputValue) || (pickedUrl === null)}
+                        onPress={ () => onPressSaveImage(pickedUrl) }
                     />
                 </View>
                 <TouchableOpacity

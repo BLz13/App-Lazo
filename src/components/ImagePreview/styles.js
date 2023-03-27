@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
         borderRadius: 30,
         paddingVertical: 40,
         paddingHorizontal: 20,
-        aspectRatio: 0.7,
+        aspectRatio: 1,
         elevation: 24,
         width: "95%",
         display: "flex",
@@ -22,48 +22,21 @@ export const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "space-between",
         position: "absolute",
-        bottom: Dimensions.get('window').height * 0.2,
+        top: Dimensions.get('window').height - (Dimensions.get('window').width * 0.96),
     },
     previewBox: {
-        flex: 6,
-        width: "100%",
-        marginBottom: 20,
+        width: "90%",
+        aspectRatio: 1,
         justifyContent: "center",
         alignItems: "center",
-        overflow: "hidden"
-    },
-    noImage:{
-        flex: 6,
-        aspectRatio: 1.5,
-        justifyContent: "center",
-        alignItems: "center",
-    },
-    previewText:{
-        fontFamily: 'Regular'
     },
     previewImage:{
-        width: '100%',
-        height: '100%'
-    },
-    buttonsContainer:{
-        flex: 1,
         width: "100%",
-        display:"flex",
-        flexDirection:"row",
-        alignItems: "center",
-        justifyContent: "space-between",
+        height: "100%"
     },
     cancelIcon:{
         position:"absolute",
         top: 10,
         right: 10
-    },
-    textInput:{
-      paddingBottom: -5,
-      width: '100%',
-      height: 40,
-      opacity: 0.7,
-      borderBottomWidth:2,
-      fontFamily: "Italic",
     }
 })

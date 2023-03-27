@@ -46,8 +46,9 @@ const NotesPage = ({ route }) => {
 
     const onHandleModal = (item) => {
         setModalVisible(!isModalVisible);
+        console.log(item);
         const payload = {
-            note: item,
+            noteData: item,
             currentScreen: currentScreen
         }
         dispatch(selectNote(payload));

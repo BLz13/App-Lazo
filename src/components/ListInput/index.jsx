@@ -22,8 +22,6 @@ const ListInput = (props) => {
         setCameraModalVisible(!isCameraModalVisible);
     };
 
-    const onImage = (uri) => {};
-
     function placeholderText() {
         switch (currentScreen) {
             case "general": return ("Add new note");            
@@ -106,7 +104,7 @@ const ListInput = (props) => {
           />
           <TouchableOpacity onPress={ () => onHandleCameraModal() } >
               <MaterialCommunityIcons
-                  name={"camera-outline"}
+                  name={"camera-plus-outline"}
                   size={25}
                   color={iconsActiveColors()}
               />
@@ -119,9 +117,10 @@ const ListInput = (props) => {
               />
           </TouchableOpacity>
           <ImageSelector
-              onImage={onImage}
               isCameraModalVisible={isCameraModalVisible}
               onPressCancelCamera={ () => onPressCancelCamera() }
+              setCameraModalVisible={setCameraModalVisible}
+              currentScreen={currentScreen}
           />
       </View>
     )

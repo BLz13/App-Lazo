@@ -6,3 +6,4 @@ export {default as SettingsModal} from './SettingsModal/index';
 export {default as OptionsMenuBtn} from './OptionsMenuBtn/index';
 export {default as Categories} from './Categories/index';
 export {default as ImageSelector} from './ImageSelector/index'
+export {default as ImagePreview} from './ImagePreview/index'

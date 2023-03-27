@@ -49,30 +49,30 @@ const notesReducer = ( state = initialState, action) => {
 
             switch (state.selected.currentScreen) {
                 case "general": {
-                    const indexNote = state.general.findIndex( (note) => (note.id === state.selected.note.id) )
+                    const indexNote = state.general.findIndex( (note) => (note.id === state.selected.noteData.id) )
                     console.log(indexNote);
                     if (indexNote === -1) {
                         return(state)
                     } {
                         return {
                             ...state,
-                            general: (state['general'].filter( (note) => note.id !== state.selected.note.id))
+                            general: (state['general'].filter( (note) => note.id !== state.selected.noteData.id))
                         };
                     };
                 };
                 case "shopping": {
-                    const indexNote = state.shopping.findIndex( (note) => (note.id === state.selected.note.id) )
+                    const indexNote = state.shopping.findIndex( (note) => (note.id === state.selected.noteData.id) )
                     if (indexNote === -1) {
                         return(state)
                     } {
                         return {
                             ...state,
-                            shopping: (state['shopping'].filter( (note) => note.id !== state.selected.note.id))
+                            shopping: (state['shopping'].filter( (note) => note.id !== state.selected.noteData.id))
                         };
                     };
                 };
                 case "toDo": {
-                    const indexNote = state.toDo.findIndex( (note) => (note.id === state.selected.note.id) )
+                    const indexNote = state.toDo.findIndex( (note) => (note.id === state.selected.noteData.id) )
                     if (indexNote === -1) {
                         return(state)
                     } {

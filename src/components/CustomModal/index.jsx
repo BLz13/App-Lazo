@@ -8,8 +8,10 @@ const CustomModal = (props) => {
 
     const { isModalVisible, selectedItem, onPressCancel, onPressDelete} = props;
 
+    console.log(selectedItem);
+
     function renderItem(){
-      if ( selectedItem !== null ) { return `"${selectedItem.note.value}"`} {return ""}
+      if ( selectedItem !== null ) { return `"${selectedItem.noteData.value}"`} {return ""}
     };
 
     return (

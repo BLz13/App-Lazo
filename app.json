@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Note'It",
-    "slug": "Note'It",
+    "slug": "note-it",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

@@ -5,7 +5,7 @@ import { Alert, Button, Image, Modal, Text, TextInput, TouchableOpacity, View, u
 import { COLOURS } from "../../assets/COLOURS"
 import MaterialCommunityIcons   from "@expo/vector-icons/MaterialCommunityIcons";
 import React from "react";
-import { addNote } from '../../redux/actions';
+import { addNote } from "../../redux/note.slice"
 import { styles } from "./styles"
 import { useDispatch } from 'react-redux';
 import { useState } from "react";
@@ -32,8 +32,7 @@ const ImageSelector = (props) => {
                 noteData:{
                     id: Math.random().toString(),
                     value: inputValue,
-                    url: pickedUrl,
-                    isImage: true
+                    url: pickedUrl
                 },
                 currentScreen: currentScreen
             }

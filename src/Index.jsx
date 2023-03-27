@@ -4,9 +4,18 @@ import AppNavigation from "./navigation/index"
 import { COLOURS } from './assets/COLOURS';
 import { Provider as StoreProvider } from 'react-redux';
 import { init } from "./db";
-import redux from "./redux/index"
+import { store } from "./redux"
 import { styles } from './styles';
 import { useFonts } from "expo-font"
+
+init()
+.then(() => {
+  console.log("Database Initialized");
+})
+.catch((err) => {
+  console.log("Database Initialization Failed");
+  console.log(err);
+});
 
 const App = () => {
 
@@ -37,18 +46,9 @@ const App = () => {
       </View>
     );
   };
-
-  init()
-    .then(() => {
-      console.log("Database Initialized");
-    })
-    .catch((err) => {
-      console.log("Database Initialization Failed");
-      console.log(err);
-    });
  
   return (
-    <StoreProvider store={redux} >
+    <StoreProvider store={store} >
       <View style={styles.container}>
         <StatusBar 
           barStyle={ useColorScheme() !== 'light' ? 'light-content' : 'dark-content'}

@@ -60,7 +60,7 @@ const TaskItem = (props) => {
     };
   };
 
-  return (item.isImage !== true) ? (
+  return (item.url === "noImage") ? (
       <TouchableOpacity style={styles.listItemContainer} onPress={ () => onHandleModal(item) } >
           <Text style={[styles.listItem, { color: textColors(), borderColor: borderColors() }]}>
               {item.value}

@@ -1,5 +1,6 @@
-import { Button, Modal, Text, TouchableOpacity, View } from 'react-native'
+import { Modal, Text, TouchableOpacity, View, useColorScheme } from 'react-native'
 
+import { COLOURS } from '../../assets/COLOURS';
 import MaterialCommunityIcons   from "@expo/vector-icons/MaterialCommunityIcons";
 import React from "react";
 import { styles } from "./styles";
@@ -8,10 +9,10 @@ const CustomModal = (props) => {
 
     const { isModalVisible, selectedItem, onPressCancel, onPressDelete} = props;
 
-    console.log(selectedItem);
+    const theme = useColorScheme() === "light" ? "light" : "dark"
 
     function renderItem(){
-      if ( selectedItem !== null ) { return `"${selectedItem.noteData.value}"`} {return ""}
+      if (!selectedItem) {return ""} { return `"${selectedItem.value}"`}
     };
 
     return (
@@ -31,14 +32,14 @@ const CustomModal = (props) => {
                 <MaterialCommunityIcons
                   name={"cancel"}
                   size={40}
-                  color={"#c70d0d"}
+                  color={COLOURS[theme].red}
                 />
               </TouchableOpacity>
               <TouchableOpacity onPress={ () => onPressDelete() }>
                 <MaterialCommunityIcons
                   name={"trash-can-outline"}
                   size={40}
-                  color={"#3cb10e"}
+                  color={COLOURS[theme].green}
                 />
               </TouchableOpacity>
             </View>

@@ -1,7 +1,7 @@
 import { CustomModal, ListInput, TaskList } from '../../components/index'
 import React, { useState } from 'react';
 import { View, useColorScheme } from 'react-native';
-import { addNote, deleteNote, selectNote } from "../../redux/actions/index"
+import { addNote, deleteNote, selectNote } from "../../redux/note.slice"
 import { useDispatch, useSelector } from 'react-redux';
 
 import { COLOURS } from "../../assets/COLOURS"
@@ -13,9 +13,9 @@ const NotesPage = ({ route }) => {
 
     const dispatch = useDispatch();
 
-    const notes = useSelector( (state) => state.notesReducer[currentScreen])
+    const notes = useSelector( (state) => state.notes[currentScreen])
 
-    const noteSelected = useSelector( (state) => state.notesReducer.selected);
+    const noteSelected = useSelector( (state) => state.notes.selected);
 
     const [inputValue, setInputValue] = useState("");
 
@@ -31,7 +31,8 @@ const NotesPage = ({ route }) => {
         const payload = {
             noteData:{
                 id: Math.random().toString(),
-                value: inputValue
+                value: inputValue,
+                url: "noImage"
             },
             currentScreen: currentScreen
         }
@@ -46,11 +47,11 @@ const NotesPage = ({ route }) => {
 
     const onHandleModal = (item) => {
         setModalVisible(!isModalVisible);
-        console.log(item);
         const payload = {
             noteData: item,
             currentScreen: currentScreen
         }
+        console.log(payload);
         dispatch(selectNote(payload));
     };
   

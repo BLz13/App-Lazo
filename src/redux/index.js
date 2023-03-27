@@ -1,10 +1,11 @@
-import { applyMiddleware, combineReducers, createStore } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
+import noteReducer from "./note.slice";
 
-import { notesReducer } from "./reducer/index"
-import thunk from "redux-thunk";
-
-const rootReducer = combineReducers({
-    notesReducer: notesReducer
+export const store = configureStore({
+    reducer: {
+        notes: noteReducer,
+    },
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
-
-export default createStore(rootReducer, applyMiddleware(thunk));

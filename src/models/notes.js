@@ -1,8 +1,9 @@
 class Note {
-    constructor(id, value, url){
+    constructor(id, category, value, image){
         this.id = id;
+        this.category = category,
         this.value = value;
-        this.url = url;
+        this.image = image;
     };
 };
 

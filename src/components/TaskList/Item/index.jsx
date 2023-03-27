@@ -60,35 +60,35 @@ const TaskItem = (props) => {
     };
   };
 
-  return (item.url === "noImage") ? (
+  return (item.image === "noImage") ? (
       <TouchableOpacity style={styles.listItemContainer} onPress={ () => onHandleModal(item) } >
           <Text style={[styles.listItem, { color: textColors(), borderColor: borderColors() }]}>
               {item.value}
           </Text>
       </TouchableOpacity>
-  ) : (
-    <>
-        <View style={styles.listImageItem}>
-            <TouchableOpacity onPress={ () => onPressShowImageModal() } >
-                <MaterialCommunityIcons
-                  name={"camera-outline"}
-                  size={25}
-                  color={textColors()}
-                  />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.listItemContainer} onPress={ () => onHandleModal(item) } >
-              <Text style={[styles.imageText, { color: textColors(), borderColor: borderColors(), textAlignVertical: 'center' }]} >
-                  "{item.value}"
-              </Text>
-            </TouchableOpacity>
-        </View>
-        <ImagePreview
-          isImageVisible={isImageVisible}
-          onPressCancelImageShow={onPressCancelImageShow}
-          item={item}
-        />
-    </>
-)
+    ) : (
+        <>
+            <View style={styles.listImageItem}>
+                <TouchableOpacity onPress={ () => onPressShowImageModal() } >
+                    <MaterialCommunityIcons
+                    name={"camera-outline"}
+                    size={25}
+                    color={textColors()}
+                    />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.listItemContainer} onPress={ () => onHandleModal(item) } >
+                <Text style={[styles.imageText, { color: textColors(), borderColor: borderColors(), textAlignVertical: 'center' }]} >
+                    "{item.value}"
+                </Text>
+                </TouchableOpacity>
+            </View>
+            <ImagePreview
+                isImageVisible={isImageVisible}
+                onPressCancelImageShow={onPressCancelImageShow}
+                item={item}
+            />
+        </>
+    )
 
 }
 

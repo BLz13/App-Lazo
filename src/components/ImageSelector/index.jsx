@@ -1,11 +1,11 @@
 import * as ImagePicker from "expo-image-picker";
 
 import { Alert, Button, Image, Modal, Text, TextInput, TouchableOpacity, View, useColorScheme } from "react-native";
+import { addNote, saveNote } from "../../redux/note.slice"
 
 import { COLOURS } from "../../assets/COLOURS"
 import MaterialCommunityIcons   from "@expo/vector-icons/MaterialCommunityIcons";
 import React from "react";
-import { addNote } from "../../redux/note.slice"
 import { styles } from "./styles"
 import { useDispatch } from 'react-redux';
 import { useState } from "react";
@@ -29,14 +29,13 @@ const ImageSelector = (props) => {
     const onPressSaveImage = () => {
         if (pickedUrl !== null) {
             const payload = {
-                noteData:{
-                    id: Math.random().toString(),
-                    value: inputValue,
-                    url: pickedUrl
-                },
-                currentScreen: currentScreen
+                category: currentScreen,
+                value: inputValue,
+                image: pickedUrl
             }
-            dispatch(addNote(payload));
+            console.log("saving image with image");
+            console.log(payload);
+            dispatch(saveNote(payload));
         };
         setCameraModalVisible(!isCameraModalVisible);
     };

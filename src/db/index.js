@@ -20,7 +20,7 @@ export const insertNote = (category, value, image) => {
     const promise = new Promise(( resolve, reject ) => {
         db.transaction((tx) => {
             tx.executeSql(
-                "INSERT INTO places (category, value, image) VALUES (?, ?, ?);",
+                "INSERT INTO notes (category, value, image) VALUES (?, ?, ?);",
                 [category, value, image],
                 (_, result) => {
                     resolve(result);
@@ -32,4 +32,23 @@ export const insertNote = (category, value, image) => {
         })
     });
     return promise;
-}
+};
+
+export const getNotes = () => {
+  const promise = new Promise((resolve, reject) => {
+      db.transaction((tx) => {
+          tx.executeSql(
+              "SELECT * FROM notes",
+              [],
+              (_, result) => {
+                  resolve(result);
+              },
+              (_, err) => {
+                  reject(err);
+              }
+          );
+      });
+  });
+
+  return promise;
+};

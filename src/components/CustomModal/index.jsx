@@ -4,16 +4,21 @@ import { COLOURS } from '../../assets/COLOURS';
 import MaterialCommunityIcons   from "@expo/vector-icons/MaterialCommunityIcons";
 import React from "react";
 import { styles } from "./styles";
+import { useSelector } from 'react-redux';
 
 const CustomModal = (props) => {
 
-    const { isModalVisible, selectedItem, onPressCancel, onPressDelete} = props;
+    const { isModalVisible, onPressCancel, onPressDelete} = props;
 
-    const theme = useColorScheme() === "light" ? "light" : "dark"
+    const theme = useColorScheme() === "light" ? "light" : "dark";
+
+    const noteSelected = useSelector( (state) => state.notes.selected);
 
     function renderItem(){
-      if (!selectedItem) {return ""} { return `"${selectedItem.value}"`}
+      if (!noteSelected) {return ""} { return `"${noteSelected.value}"`}
     };
+
+    console.log(noteSelected);
 
     return (
       <Modal

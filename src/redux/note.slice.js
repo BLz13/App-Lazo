@@ -1,3 +1,5 @@
+import { getNotes, insertNote } from "../db";
+
 import Note from "../models/notes";
 import { createSlice } from "@reduxjs/toolkit";
 
@@ -13,10 +15,13 @@ const noteSlice = createSlice({
     initialState,
     reducers: {
         addNote: (state, action) => {
-            const { id, url, value } = action.payload.noteData;
-            const category = action.payload.currentScreen;
-            const newNote = new Note(id, value, url);
-            switch (category) {
+            const newNote = new Note(
+                action.payload.id,
+                action.payload.category,
+                action.payload.value,
+                action.payload.image
+            );
+            switch (newNote.category) {
                 case "general": return {
                     ...state,
                     general: [...state.general, newNote]
@@ -73,8 +78,7 @@ const noteSlice = createSlice({
         },
         selectNote: (state, action) => {
             if (action.payload) {
-                const { id, url, value } = action.payload.noteData;
-                const category = action.payload.currentScreen;
+                const { id, category, url, value } = action.payload;
                 return {
                     ...state,
                     selected: {
@@ -85,10 +89,56 @@ const noteSlice = createSlice({
                     }
                 }
             }
+        },
+        setNotes: (state, action) => {
+            const generalNotes = [];
+            const shoppingNotes = [];
+            const toDoNotes = [];  
+            action.payload.map( (note) => {              
+                switch (note.category) {
+                    case "general": return (generalNotes.push(note));
+                    case "shopping": return (shoppingNotes.push(note));
+                    case "toDo": return (toDoNotes.push(note));
+                    default: break;
+                };
+            });            
+            return state = {
+                general: generalNotes,
+                shopping: shoppingNotes,
+                toDo: toDoNotes,
+                selected: null
+            };
         }
-    } 
+    }
 });
 
-export const { addNote, deleteNote, selectNote } = noteSlice.actions;
+export const { addNote, deleteNote, selectNote, setNotes } = noteSlice.actions;
 
 export default noteSlice.reducer;
+
+export const saveNote = (payload) => {
+    const {category, value, image} = payload;
+    return async (dispatch) => {
+        try {
+            const result = await insertNote(category, value, image);
+            dispatch(addNote({ id: result.insertId, category, value, image }))
+        }
+        catch (error) {
+            console.log("error", error);
+            throw error;
+        };
+    };
+};
+
+export const loadNotes = () => {
+    return async (dispatch) => {
+        try {
+            const result = await getNotes();
+            dispatch(setNotes(result?.rows?._array))
+        }
+        catch (error) {
+            console.log("error", error);
+            throw error;
+        };
+    };
+};

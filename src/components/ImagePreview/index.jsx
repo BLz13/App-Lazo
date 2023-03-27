@@ -1,17 +1,11 @@
-import * as ImagePicker from "expo-image-picker";
+import { Image, Modal, Text, TouchableOpacity, View } from "react-native";
 
-import { Alert, Button, Image, Modal, Text, TouchableOpacity, View, useColorScheme } from "react-native";
-
-import { COLOURS } from "../../assets/COLOURS"
-import MaterialCommunityIcons   from "@expo/vector-icons/MaterialCommunityIcons";
 import React from "react";
 import { styles } from "./styles"
 
 const ImagePreview = (props) => {
 
-    const { isImageVisible, onPressCancelImageShow, onHandleModal, item } = props;
-
-    const theme = ( useColorScheme() === "light" ? "light" : "dark" )
+    const { isImageVisible, onPressCancelImageShow, item } = props;
 
     return (
         <Modal
@@ -20,31 +14,21 @@ const ImagePreview = (props) => {
             transparent={true}
             statusBarTranslucent={true}
         >
-          <View style={styles.modalBack}>
-            <View style={styles.modalContainer}>
+            <View style={styles.modalBack}>
                 <TouchableOpacity
-                    onPress={ () => onHandleModal(item) }
-                    style={styles.previewBox}
-                >
+                        onPress={ () => onPressCancelImageShow() }
+                        style={styles.modalBackCancel}
+                />
+                <View style={styles.modalContainer}>
                     <Image
                         style={styles.previewImage}
                         height={9}
                         width={16}
-                        source={{ uri: item.url }}
+                        source={{ uri: item.image }}
                     />
-                </TouchableOpacity>
-                <TouchableOpacity
-                    onPress={ () => onPressCancelImageShow() }
-                    style={styles.cancelIcon}
-                >
-                    <MaterialCommunityIcons
-                        name={"window-close"}
-                        size={22}
-                        color={COLOURS[theme].black}
-                    />
-                </TouchableOpacity>
+                    <Text style={styles.previewText}> "{item.value}" </Text>
+                </View>
             </View>
-        </View>
       </Modal>
     )
 };

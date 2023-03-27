@@ -1,7 +1,7 @@
 import { CustomModal, ListInput, TaskList } from '../../components/index'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, useColorScheme } from 'react-native';
-import { addNote, deleteNote, selectNote } from "../../redux/note.slice"
+import { deleteNote, loadNotes, saveNote, selectNote } from "../../redux/note.slice"
 import { useDispatch, useSelector } from 'react-redux';
 
 import { COLOURS } from "../../assets/COLOURS"
@@ -15,8 +15,6 @@ const NotesPage = ({ route }) => {
 
     const notes = useSelector( (state) => state.notes[currentScreen])
 
-    const noteSelected = useSelector( (state) => state.notes.selected);
-
     const [inputValue, setInputValue] = useState("");
 
     const [isModalVisible, setModalVisible] = useState(false);
@@ -29,14 +27,11 @@ const NotesPage = ({ route }) => {
 
     const onPressAddHandler = () => {
         const payload = {
-            noteData:{
-                id: Math.random().toString(),
-                value: inputValue,
-                url: "noImage"
-            },
-            currentScreen: currentScreen
+            category: currentScreen,
+            value: inputValue,
+            image: "noImage"
         }
-        dispatch(addNote(payload));
+        dispatch(saveNote(payload));
         setInputValue('')
     };
 
@@ -47,11 +42,13 @@ const NotesPage = ({ route }) => {
 
     const onHandleModal = (item) => {
         setModalVisible(!isModalVisible);
+        console.log(item);
         const payload = {
-            noteData: item,
-            currentScreen: currentScreen
+            id: item.id,
+            category: item.category,
+            value: item.value,
+            image: item.image
         }
-        console.log(payload);
         dispatch(selectNote(payload));
     };
   
@@ -60,6 +57,10 @@ const NotesPage = ({ route }) => {
         const payload = null;
         dispatch(selectNote(payload));
     };
+
+    useEffect(() => {
+        dispatch(loadNotes())
+    },[dispatch])
 
     function pageColors(){
         switch (currentScreen) {
@@ -93,7 +94,6 @@ const NotesPage = ({ route }) => {
             />
             <CustomModal
                 isModalVisible={isModalVisible}
-                selectedItem={noteSelected}
                 onPressCancel={onPressCancel}
                 onPressDelete={onPressDeleteHandler}
             />

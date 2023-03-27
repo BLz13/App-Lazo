@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
-    backgroundColor: '#0002'
+    backgroundColor: '#0005'
   },
   modalContainer:{
     borderRadius: 30,
@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     position: "absolute",
-    top: Dimensions.get('window').height - (Dimensions.get('window').width * 0.96),
+    top: Dimensions.get('window').height * 0.25,
   },
   modalTitle:{
     textAlign:'center',
